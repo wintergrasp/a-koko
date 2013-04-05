@@ -3,11 +3,11 @@ package ar.com.eduardocuomo.rxandroid;
 import android.content.ContextWrapper;
 
 /**
- * Utilities and common methods.
+ * Common methods.
  *
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
-public class RxAndroid {
+public final class RxAndroid {
 
 	/**
 	 * Main Application. Saved on first use {@link #RxActivity} as Activity.

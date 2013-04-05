@@ -17,8 +17,8 @@ import android.os.Environment;
  */
 public class RxStorageExternal extends RxStorage {
 
-	private final File sdcard;
-	private final File file;
+	protected final File sdcard;
+	protected final File file;
 
 	/**
 	 * Create new external storage file interface.

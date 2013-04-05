@@ -32,6 +32,21 @@ public abstract class RxActivity extends Activity {
 		}
 	}
 
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		onCreate();
+	}
+
+	/**
+	 * Executed after onCreate(Bundle savedInstanceState). In this case, not
+	 * need to add {@code super.onCreate(savedInstanceState);}
+	 *
+	 * @see #onCreate
+	 */
+	protected void onCreate() {
+	}
+
 	/**
 	 * Find a view element. View Element type is determinate with variable type.
 	 *
@@ -226,5 +241,25 @@ public abstract class RxActivity extends Activity {
 			RxVar.VARS.put(key,
 					savedInstanceState.get(_INSTANCE_KEY_BASE + key));
 		}
+	}
+
+	/**
+	 * Print line.
+	 *
+	 * @param var
+	 *            Variable to print.
+	 */
+	public static void println(Object var) {
+		RxUtils.println(var);
+	}
+
+	/**
+	 * Print.
+	 *
+	 * @param var
+	 *            Variable to print.
+	 */
+	public static void print(Object var) {
+		RxUtils.print(var);
 	}
 }
