@@ -3,16 +3,35 @@ package ar.com.eduardocuomo.rxandroid;
 import android.content.ContextWrapper;
 import android.content.Intent;
 
-public class RxIntent {
+/**
+ * Intent manager.
+ *
+ * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
+ */
+public class RxIntent extends Intent {
 
-    public final Intent intent;
-    private ContextWrapper context;
+	/**
+	 * Context for intent.
+	 */
+	protected ContextWrapper context;
 
-    public RxIntent(ContextWrapper context, Class<RxActivity> activityClass) {
-        intent = new Intent(context, activityClass);
-    }
+	/**
+	 * New intent.
+	 *
+	 * @param context
+	 *            Context.
+	 * @param activityClass
+	 *            Activity to start.
+	 */
+	public RxIntent(ContextWrapper context, Class<RxActivity> activityClass) {
+		super(context, activityClass);
+		this.context = context;
+	}
 
-    public void start() {
-        context.startActivity(intent);
-    }
+	/**
+	 * Start new activity.
+	 */
+	public void start() {
+		context.startActivity(this);
+	}
 }
