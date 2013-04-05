@@ -14,6 +14,8 @@ public abstract class RxAction {
 	 *
 	 * @param v
 	 *            View Element.
+	 * @param activity
+	 *            Current activity.
 	 */
-	public abstract void action(RxView v);
+	public abstract void action(RxView v, RxActivity activity);
 }

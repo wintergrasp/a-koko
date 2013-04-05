@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import ar.com.eduardocuomo.rxandroid.RxAction;
+import ar.com.eduardocuomo.rxandroid.RxActivity;
 
 /**
  * Extended view element.
@@ -52,14 +53,17 @@ public class RxView {
 	 *
 	 * @param action
 	 *            On Click action.
+	 * @param activity
+	 *            Activity.
 	 * @return This instance.
 	 */
-	public RxView onClick(RxAction action) {
+	public RxView onClick(RxActivity activity, RxAction action) {
 		final RxAction a = action;
+		final RxActivity x = activity;
 		view.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				a.action(new RxView(v));
+				a.action(new RxView(v), x);
 			}
 		});
 		return this;
@@ -84,5 +88,31 @@ public class RxView {
 	@Override
 	public String toString() {
 		return getText();
+	}
+
+	/**
+	 * Set text to view.
+	 *
+	 * @param text Text to set.
+	 * @return This instance.
+	 */
+	public RxView setText(String text) {
+		if (view instanceof TextView) {
+			((TextView) view).setText(text);
+		} else {
+			view.setContentDescription(text);
+		}
+		return this;
+	}
+
+	/**
+	 * Set content description to view.
+	 *
+	 * @param text Text to set.
+	 * @return This instance.
+	 */
+	public RxView setContentDescription(String text) {
+		view.setContentDescription(text);
+		return this;
 	}
 }
