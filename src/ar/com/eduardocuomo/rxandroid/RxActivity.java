@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
+import android.view.View;
 import ar.com.eduardocuomo.rxandroid.widget.RxView;
 
 /**
@@ -54,22 +55,35 @@ public abstract class RxActivity extends Activity {
 	 *            ID of view element.
 	 * @return View element.
 	 * @see #findElement
+	 * @see #$
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> T findView(int id) {
+	public <T extends View> T findView(int id) {
 		return (T) findViewById(id);
 	}
 
 	/**
 	 * Find a View Element and create {@link #RxView} element.
 	 *
-	 * @param id
-	 *            ID of view element.
+	 * @param id ID of view element.
 	 * @return {@link #RxView} element.
 	 * @see #findView
 	 */
-	public RxView findElement(int id) {
-		return new RxView(findViewById(id));
+	@SuppressWarnings("unchecked")
+	public <T extends RxView<?>> T findElement(int id) {
+		return (T) new RxView<View>(findViewById(id));
+	}
+
+	/**
+	 * Find a View Element and create {@link #RxView} element.
+	 *
+	 * @param id ID of view element.
+	 * @return {@link #RxView} element.
+	 * @see #findView
+	 * @see #findElement
+	 */
+	public <T extends RxView<?>> T $(int id) {
+		return findElement(id);
 	}
 
 	/**
@@ -84,7 +98,6 @@ public abstract class RxActivity extends Activity {
 		for (Map.Entry<String, Object> row : RxVar.VARS.entrySet()) {
 			String key = _INSTANCE_KEY_BASE + row.getKey();
 			Object value = row.getValue();
-			// String type = value.getClass().getSimpleName();
 			int c, i;
 
 			if (value instanceof Boolean) {

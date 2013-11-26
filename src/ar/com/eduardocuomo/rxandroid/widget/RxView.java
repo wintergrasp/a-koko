@@ -11,20 +11,19 @@ import ar.com.eduardocuomo.rxandroid.RxActivity;
  *
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
-public class RxView {
+public class RxView<T extends View> {
 
 	/**
 	 * Asociated {@link View} Element.
 	 */
-	protected View view;
+	protected T view;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param view
-	 *            {@link View} Element to use.
+	 * @param view {@link View} Element to use.
 	 */
-	public RxView(View view) {
+	public RxView(T view) {
 		this.view = view;
 	}
 
@@ -33,37 +32,24 @@ public class RxView {
 	 *
 	 * @return {@link View} Element.
 	 */
-	public View getView() {
+	public T getView() {
 		return view;
-	}
-
-	/**
-	 * Get {@link View} Element. View Element type is determinate with variable
-	 * type.
-	 *
-	 * @return {@link View} Element.
-	 */
-	@SuppressWarnings("unchecked")
-	public <T> T View() {
-		return (T) view;
 	}
 
 	/**
 	 * On Click Action.
 	 *
-	 * @param action
-	 *            On Click action.
-	 * @param activity
-	 *            Activity.
+	 * @param action On Click action.
+	 * @param activity Activity.
 	 * @return This instance.
 	 */
-	public RxView onClick(RxActivity activity, RxAction action) {
+	public RxView<T> onClick(RxActivity activity, RxAction action) {
 		final RxAction a = action;
 		final RxActivity x = activity;
 		view.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				a.action(new RxView(v), x);
+				a.action(new RxView<View>(v), x);
 			}
 		});
 		return this;
@@ -96,7 +82,7 @@ public class RxView {
 	 * @param text Text to set.
 	 * @return This instance.
 	 */
-	public RxView setText(String text) {
+	public RxView<T> setText(String text) {
 		if (view instanceof TextView) {
 			((TextView) view).setText(text);
 		} else {
@@ -111,7 +97,7 @@ public class RxView {
 	 * @param text Text to set.
 	 * @return This instance.
 	 */
-	public RxView setContentDescription(String text) {
+	public RxView<T> setContentDescription(String text) {
 		view.setContentDescription(text);
 		return this;
 	}

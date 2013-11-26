@@ -1,4 +1,4 @@
-Claro-Control
+Android KoKo
 =============
 
-Claro Control + RxAndroid
+Android KoKo + RxAndroid

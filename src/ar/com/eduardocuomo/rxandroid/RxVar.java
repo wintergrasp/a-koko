@@ -11,7 +11,7 @@ import java.util.Map;
  * @param <T>
  *            Type.
  */
-public class RxVar<T> {
+public class RxVar<T extends Object> {
 
 	/**
 	 * All saved variables.
@@ -26,13 +26,17 @@ public class RxVar<T> {
 	/**
 	 * Constructor.
 	 *
-	 * @param value
-	 *            Value to save.
+	 * @param value Value to save.
 	 */
 	public RxVar(T value) {
 		StackTraceElement[] stes = Thread.currentThread().getStackTrace();
 		StackTraceElement ste = stes[1];
-		this.key = ste.getClassName() + ste.getFileName() + ste.getLineNumber();
+		this.key = new StringBuilder(ste.getClassName())
+			.append("|")
+			.append(ste.getFileName())
+			.append("|")
+			.append(ste.getLineNumber())
+			.toString();
 		set(value);
 	}
 
@@ -50,16 +54,21 @@ public class RxVar<T> {
 	 */
 	@SuppressWarnings("unchecked")
 	public T get() {
-		return (T) VARS.get(key);
+		if (VARS.containsKey(key)) {
+			return (T)VARS.get(key);
+		} else {
+			return null;
+		}
 	}
 
 	/**
 	 * Set value
 	 *
-	 * @param value
-	 *            Value to set.
+	 * @param value Value to set.
 	 */
 	public void set(T value) {
+		if (VARS.containsKey(key))
+			VARS.remove(key);
 		VARS.put(key, value);
 	}
 }
