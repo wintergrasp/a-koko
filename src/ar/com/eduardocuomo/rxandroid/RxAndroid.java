@@ -4,7 +4,7 @@ import android.content.ContextWrapper;
 
 /**
  * Common methods.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public final class RxAndroid {
@@ -16,7 +16,7 @@ public final class RxAndroid {
 
 	/**
 	 * Get Main Application.
-	 *
+	 * 
 	 * @return Main Application.
 	 * @see #setMainApplication
 	 * @see #hasMainApplication
@@ -31,7 +31,7 @@ public final class RxAndroid {
 
 	/**
 	 * Set Main Application.
-	 *
+	 * 
 	 * @param app
 	 *            Main Application.
 	 * @see #getMainApplication
@@ -43,7 +43,7 @@ public final class RxAndroid {
 
 	/**
 	 * Main Application has been saved?
-	 *
+	 * 
 	 * @return Return {@code true} if Main Application is saved.
 	 * @see #getMainApplication
 	 * @see #setMainApplication

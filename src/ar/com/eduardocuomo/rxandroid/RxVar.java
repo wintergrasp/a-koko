@@ -5,9 +5,9 @@ import java.util.Map;
 
 /**
  * Variables to save in instance.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
- *
+ * 
  * @param <T>
  *            Type.
  */
@@ -25,18 +25,16 @@ public class RxVar<T extends Object> {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param value Value to save.
+	 * 
+	 * @param value
+	 *            Value to save.
 	 */
 	public RxVar(T value) {
 		StackTraceElement[] stes = Thread.currentThread().getStackTrace();
 		StackTraceElement ste = stes[1];
-		this.key = new StringBuilder(ste.getClassName())
-			.append("|")
-			.append(ste.getFileName())
-			.append("|")
-			.append(ste.getLineNumber())
-			.toString();
+		this.key = new StringBuilder(ste.getClassName()).append("|")
+				.append(ste.getFileName()).append("|")
+				.append(ste.getLineNumber()).toString();
 		set(value);
 	}
 
@@ -49,13 +47,13 @@ public class RxVar<T extends Object> {
 
 	/**
 	 * Get value.
-	 *
+	 * 
 	 * @return Value.
 	 */
 	@SuppressWarnings("unchecked")
 	public T get() {
 		if (VARS.containsKey(key)) {
-			return (T)VARS.get(key);
+			return (T) VARS.get(key);
 		} else {
 			return null;
 		}
@@ -63,8 +61,9 @@ public class RxVar<T extends Object> {
 
 	/**
 	 * Set value
-	 *
-	 * @param value Value to set.
+	 * 
+	 * @param value
+	 *            Value to set.
 	 */
 	public void set(T value) {
 		if (VARS.containsKey(key))

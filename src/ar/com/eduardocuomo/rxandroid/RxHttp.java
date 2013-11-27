@@ -16,7 +16,7 @@ import java.util.Map;
 
 /**
  * HTTP connection.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public class RxHttp {
@@ -26,7 +26,7 @@ public class RxHttp {
 
 	/**
 	 * Parameters.
-	 *
+	 * 
 	 * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
 	 */
 	public class Params {
@@ -34,7 +34,7 @@ public class RxHttp {
 
 		/**
 		 * Add parameter.
-		 *
+		 * 
 		 * @param key
 		 *            Parameter name.
 		 * @param value
@@ -48,7 +48,7 @@ public class RxHttp {
 
 		/**
 		 * Get parameters as Map.
-		 *
+		 * 
 		 * @return Parameters as Map.
 		 */
 		public Map<String, String> getParams() {
@@ -58,7 +58,7 @@ public class RxHttp {
 
 	/**
 	 * Connect to URL.
-	 *
+	 * 
 	 * @param url
 	 *            URL to connect.
 	 * @throws MalformedURLException
@@ -78,7 +78,7 @@ public class RxHttp {
 
 	/**
 	 * Connect to URL.
-	 *
+	 * 
 	 * @param url
 	 *            URL to connect.
 	 * @throws MalformedURLException
@@ -93,7 +93,7 @@ public class RxHttp {
 
 	/**
 	 * Send parameters to URL.
-	 *
+	 * 
 	 * @param params
 	 *            Parameters to send.
 	 * @throws IOException
@@ -116,7 +116,7 @@ public class RxHttp {
 
 	/**
 	 * Send parameters to URL.
-	 *
+	 * 
 	 * @param params
 	 *            Parameters to send.
 	 * @throws IOException
@@ -128,8 +128,17 @@ public class RxHttp {
 	}
 
 	/**
+	 * Create new instance of Map for parameters.
+	 * 
+	 * @return Map instance for parameters.
+	 */
+	public Params createParams() {
+		return new Params();
+	}
+
+	/**
 	 * Read Web Page response.
-	 *
+	 * 
 	 * @return Web page response.
 	 * @throws IOException
 	 *             In case of error.
@@ -150,7 +159,7 @@ public class RxHttp {
 
 	/**
 	 * Encode as URL.
-	 *
+	 * 
 	 * @param str
 	 *            String to encode.
 	 * @param encode
@@ -167,21 +176,12 @@ public class RxHttp {
 
 	/**
 	 * Encode as URL.
-	 *
+	 * 
 	 * @param str
 	 *            String to encode.
 	 * @return Encoded string.
 	 */
 	public static String Encode(String str) {
 		return Encode(str, "UTF-8");
-	}
-
-	/**
-	 * Create new instance of Map for parameters.
-	 *
-	 * @return Map instance for parameters.
-	 */
-	public Params createParams() {
-		return new Params();
 	}
 }

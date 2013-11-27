@@ -12,7 +12,7 @@ import android.os.Environment;
 
 /**
  * External storage manager.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public class RxStorageExternal extends RxStorage {
@@ -22,7 +22,7 @@ public class RxStorageExternal extends RxStorage {
 
 	/**
 	 * Create new external storage file interface.
-	 *
+	 * 
 	 * @param fileName
 	 *            File name to open for read and/or write.
 	 */

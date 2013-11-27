@@ -8,7 +8,7 @@ import java.io.OutputStreamWriter;
 
 /**
  * Storage manager.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public abstract class RxStorage {
@@ -24,7 +24,7 @@ public abstract class RxStorage {
 
 	/**
 	 * Check if file exists in internal storage.
-	 *
+	 * 
 	 * @return Returns <code>TRUE</code> if file exists in internal storage.
 	 *         Returns <code>FALSE</code> if file not exists in internal
 	 *         storage.
@@ -34,7 +34,7 @@ public abstract class RxStorage {
 	/**
 	 * Open file for write and overwrite contents. <br>
 	 * For close, use {@link #closeWriter}.
-	 *
+	 * 
 	 * @param mode
 	 *            to an existing file to control permissions. Use
 	 *            <code>Activity.MODE_PRIVATE</code>
@@ -49,7 +49,7 @@ public abstract class RxStorage {
 	/**
 	 * Open file for read. <br>
 	 * For close, use {@link #closeReader}.
-	 *
+	 * 
 	 * @return Buffer reader.
 	 * @throws FileNotFoundException
 	 *             File not found.
@@ -60,7 +60,7 @@ public abstract class RxStorage {
 	/**
 	 * Close opened file for write. <br>
 	 * For open, use {@link #openWriter}.
-	 *
+	 * 
 	 * @throws IllegalStateException
 	 *             File is not opened. Call before {@link openWriter}.
 	 * @throws IOException
@@ -80,7 +80,7 @@ public abstract class RxStorage {
 	/**
 	 * Close file opened for read. <br>
 	 * For open, use {@link #openReader}.
-	 *
+	 * 
 	 * @throws IllegalStateException
 	 *             File is not opened. Call before {@link openReader}.
 	 * @throws IOException
@@ -99,7 +99,7 @@ public abstract class RxStorage {
 
 	/**
 	 * Create and overwrite file contents.
-	 *
+	 * 
 	 * @param text
 	 *            Text to write into file.
 	 * @throws IOException
@@ -115,7 +115,7 @@ public abstract class RxStorage {
 
 	/**
 	 * Read all file contents.
-	 *
+	 * 
 	 * @return File contents.
 	 * @throws IOException
 	 *             Error on close file.
@@ -142,7 +142,7 @@ public abstract class RxStorage {
 
 	/**
 	 * Get file name.
-	 *
+	 * 
 	 * @return File name.
 	 */
 	public String getFileName() {

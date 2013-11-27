@@ -8,14 +8,14 @@ import java.util.List;
 
 /**
  * Utilities and common methods.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public final class RxUtils {
 
 	/**
 	 * Returns MD5 of string, or NULL in case of error.
-	 *
+	 * 
 	 * @param s
 	 *            String to get MD5.
 	 * @return MD5.
@@ -33,7 +33,7 @@ public final class RxUtils {
 
 	/**
 	 * Generate random number between 0 and "max".
-	 *
+	 * 
 	 * @param max
 	 *            Max value.
 	 * @return Random number.
@@ -44,7 +44,7 @@ public final class RxUtils {
 
 	/**
 	 * Print line.
-	 *
+	 * 
 	 * @param var
 	 *            Variable to print.
 	 */
@@ -54,7 +54,7 @@ public final class RxUtils {
 
 	/**
 	 * Print.
-	 *
+	 * 
 	 * @param var
 	 *            Variable to print.
 	 */
@@ -64,9 +64,11 @@ public final class RxUtils {
 
 	/**
 	 * Repeat a string.
-	 *
-	 * @param times Times to repeat.
-	 * @param str String to repeat.
+	 * 
+	 * @param times
+	 *            Times to repeat.
+	 * @param str
+	 *            String to repeat.
 	 * @return String
 	 */
 	public static String repeat(int times, String str) {
@@ -75,8 +77,9 @@ public final class RxUtils {
 
 	/**
 	 * Clone a list.
-	 *
-	 * @param list List to clone.
+	 * 
+	 * @param list
+	 *            List to clone.
 	 * @return Cloned list instance.
 	 */
 	@SuppressWarnings("unchecked")

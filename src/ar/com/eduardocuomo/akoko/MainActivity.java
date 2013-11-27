@@ -14,6 +14,7 @@ public class MainActivity extends RxActivity {
 		setContentView(R.layout.activity_main);
 
 		numeroLinea = $(R.id.editTextNumeroLinea);
+		
 //		password = findElement(R.id.editTextPassword);
 //
 //		findElement(R.id.buttonLogin).onClick(this, new RxAction() {

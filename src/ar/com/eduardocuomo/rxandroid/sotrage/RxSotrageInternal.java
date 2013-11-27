@@ -11,7 +11,7 @@ import ar.com.eduardocuomo.rxandroid.RxAndroid;
 
 /**
  * Internal storage manager.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public class RxSotrageInternal extends RxStorage {
@@ -22,7 +22,7 @@ public class RxSotrageInternal extends RxStorage {
 
 	/**
 	 * Create new internal storage file interface.
-	 *
+	 * 
 	 * @param fileName
 	 *            File name to open for read and/or write.
 	 */
@@ -34,7 +34,7 @@ public class RxSotrageInternal extends RxStorage {
 	/**
 	 * Open file for write and overwrite contents. <br>
 	 * For close, use {@link #closeWriter}.
-	 *
+	 * 
 	 * @param mode
 	 *            to an existing file to control permissions. Use
 	 *            <code>Activity.MODE_PRIVATE</code>

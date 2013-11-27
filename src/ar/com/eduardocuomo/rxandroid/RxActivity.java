@@ -13,7 +13,7 @@ import ar.com.eduardocuomo.rxandroid.widget.RxView;
 
 /**
  * Extended Activity.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public abstract class RxActivity extends Activity {
@@ -42,32 +42,19 @@ public abstract class RxActivity extends Activity {
 	/**
 	 * Executed after onCreate(Bundle savedInstanceState). In this case, not
 	 * need to add {@code super.onCreate(savedInstanceState);}
-	 *
+	 * 
 	 * @see #onCreate
 	 */
 	protected void onCreate() {
 	}
 
 	/**
-	 * Find a view element. View Element type is determinate with variable type.
-	 *
+	 * Find a View Element and create {@link #RxView} element.
+	 * 
 	 * @param id
 	 *            ID of view element.
-	 * @return View element.
-	 * @see #findElement
-	 * @see #$
-	 */
-	@SuppressWarnings("unchecked")
-	public <T extends View> T findView(int id) {
-		return (T) findViewById(id);
-	}
-
-	/**
-	 * Find a View Element and create {@link #RxView} element.
-	 *
-	 * @param id ID of view element.
 	 * @return {@link #RxView} element.
-	 * @see #findView
+	 * @see #$
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends RxView<?>> T findElement(int id) {
@@ -76,10 +63,10 @@ public abstract class RxActivity extends Activity {
 
 	/**
 	 * Find a View Element and create {@link #RxView} element.
-	 *
-	 * @param id ID of view element.
+	 * 
+	 * @param id
+	 *            ID of view element.
 	 * @return {@link #RxView} element.
-	 * @see #findView
 	 * @see #findElement
 	 */
 	public <T extends RxView<?>> T $(int id) {
@@ -258,7 +245,7 @@ public abstract class RxActivity extends Activity {
 
 	/**
 	 * Print line.
-	 *
+	 * 
 	 * @param var
 	 *            Variable to print.
 	 */
@@ -268,7 +255,7 @@ public abstract class RxActivity extends Activity {
 
 	/**
 	 * Print.
-	 *
+	 * 
 	 * @param var
 	 *            Variable to print.
 	 */

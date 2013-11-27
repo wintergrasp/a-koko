@@ -2,13 +2,14 @@ package ar.com.eduardocuomo.rxandroid.widget;
 
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnFocusChangeListener;
 import android.widget.TextView;
-import ar.com.eduardocuomo.rxandroid.RxAction;
+import ar.com.eduardocuomo.rxandroid.RxEvent;
 import ar.com.eduardocuomo.rxandroid.RxActivity;
 
 /**
  * Extended view element.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public class RxView<T extends View> {
@@ -20,8 +21,9 @@ public class RxView<T extends View> {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param view {@link View} Element to use.
+	 * 
+	 * @param view
+	 *            {@link View} Element to use.
 	 */
 	public RxView(T view) {
 		this.view = view;
@@ -29,7 +31,7 @@ public class RxView<T extends View> {
 
 	/**
 	 * Get {@link View} Element.
-	 *
+	 * 
 	 * @return {@link View} Element.
 	 */
 	public T getView() {
@@ -37,19 +39,42 @@ public class RxView<T extends View> {
 	}
 
 	/**
-	 * On Click Action.
-	 *
-	 * @param action On Click action.
-	 * @param activity Activity.
+	 * On Click Event.
+	 * 
+	 * @param action
+	 *            On Click Event.
+	 * @param activity
+	 *            Activity.
 	 * @return This instance.
 	 */
-	public RxView<T> onClick(RxActivity activity, RxAction action) {
-		final RxAction a = action;
+	public RxView<T> onClick(RxActivity activity, RxEvent action) {
+		final RxEvent a = action;
 		final RxActivity x = activity;
 		view.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				a.action(new RxView<View>(v), x);
+				a.Click(new RxView<View>(v), x);
+			}
+		});
+		return this;
+	}
+
+	/**
+	 * On Focus Change Event.
+	 * 
+	 * @param activity
+	 *            Activity.
+	 * @param action
+	 *            On Focus Change Event.
+	 * @return This instance.
+	 */
+	public RxView<T> onFocusChange(RxActivity activity, RxEvent action) {
+		final RxEvent a = action;
+		final RxActivity x = activity;
+		view.setOnFocusChangeListener(new OnFocusChangeListener() {
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				a.FocusChange(hasFocus, new RxView<View>(v), x);
 			}
 		});
 		return this;
@@ -57,7 +82,7 @@ public class RxView<T extends View> {
 
 	/**
 	 * Get {@link View} Text.
-	 *
+	 * 
 	 * @return {@link View} Text as String.
 	 */
 	public String getText() {
@@ -78,8 +103,9 @@ public class RxView<T extends View> {
 
 	/**
 	 * Set text to view.
-	 *
-	 * @param text Text to set.
+	 * 
+	 * @param text
+	 *            Text to set.
 	 * @return This instance.
 	 */
 	public RxView<T> setText(String text) {
@@ -93,8 +119,9 @@ public class RxView<T extends View> {
 
 	/**
 	 * Set content description to view.
-	 *
-	 * @param text Text to set.
+	 * 
+	 * @param text
+	 *            Text to set.
 	 * @return This instance.
 	 */
 	public RxView<T> setContentDescription(String text) {

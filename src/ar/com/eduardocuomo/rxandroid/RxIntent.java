@@ -5,7 +5,7 @@ import android.content.Intent;
 
 /**
  * Intent manager.
- *
+ * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
 public class RxIntent extends Intent {
@@ -17,7 +17,7 @@ public class RxIntent extends Intent {
 
 	/**
 	 * New intent.
-	 *
+	 * 
 	 * @param context
 	 *            Context.
 	 * @param activityClass
