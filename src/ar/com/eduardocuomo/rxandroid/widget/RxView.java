@@ -1,11 +1,14 @@
 package ar.com.eduardocuomo.rxandroid.widget;
 
+import java.util.ArrayList;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
+import android.view.View.OnLongClickListener;
 import android.widget.TextView;
-import ar.com.eduardocuomo.rxandroid.RxEvent;
 import ar.com.eduardocuomo.rxandroid.RxActivity;
+import ar.com.eduardocuomo.rxandroid.event.RxEvent;
 
 /**
  * Extended view element.
@@ -18,6 +21,11 @@ public class RxView<T extends View> {
 	 * Asociated {@link View} Element.
 	 */
 	protected T view;
+
+	protected ArrayList<RxEvent> eventsFocus = null;
+	protected ArrayList<RxEvent> eventsBlur = null;
+	protected ArrayList<RxEvent> eventsClick = null;
+	protected ArrayList<RxEvent> eventsLongClick = null;
 
 	/**
 	 * Constructor.
@@ -42,41 +50,87 @@ public class RxView<T extends View> {
 	 * On Click Event.
 	 * 
 	 * @param action
-	 *            On Click Event.
-	 * @param activity
-	 *            Activity.
+	 *            Action.
 	 * @return This instance.
 	 */
-	public RxView<T> onClick(RxActivity activity, RxEvent action) {
-		final RxEvent a = action;
-		final RxActivity x = activity;
-		view.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				a.Click(new RxView<View>(v), x);
-			}
-		});
+	public RxView<T> onClick(RxEvent action) {
+		if (eventsClick == null) {
+			eventsClick = new ArrayList<RxEvent>();
+
+			final RxView<T> tv = this;
+			final RxActivity x = (RxActivity) view.getContext();
+			final ArrayList<RxEvent> zEventsClick = eventsClick;
+
+			view.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					for (RxEvent evt : zEventsClick) {
+						evt.Action(tv, x, new RxView<View>(v));
+					}
+				}
+			});
+		}
+
+		eventsClick.add(action);
+
 		return this;
 	}
 
 	/**
-	 * On Focus Change Event.
+	 * On Long Click Event.
 	 * 
-	 * @param activity
-	 *            Activity.
 	 * @param action
-	 *            On Focus Change Event.
+	 *            Action.
 	 * @return This instance.
 	 */
-	public RxView<T> onFocusChange(RxActivity activity, RxEvent action) {
-		final RxEvent a = action;
-		final RxActivity x = activity;
-		view.setOnFocusChangeListener(new OnFocusChangeListener() {
-			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
-				a.FocusChange(hasFocus, new RxView<View>(v), x);
-			}
-		});
+	public RxView<T> onLongClick(RxEvent action) {
+		if (eventsLongClick == null) {
+			eventsLongClick = new ArrayList<RxEvent>();
+
+			final RxView<T> tv = this;
+			final RxActivity x = (RxActivity) view.getContext();
+			final ArrayList<RxEvent> zEventsLongClick = eventsLongClick;
+
+			view.setOnLongClickListener(new OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					for (RxEvent evt : zEventsLongClick) {
+						evt.Action(tv, x, new RxView<View>(v));
+					}
+					// TODO: Use return value!
+					return false;
+				}
+			});
+		}
+
+		eventsClick.add(action);
+
+		return this;
+	}
+
+	/**
+	 * On Focus Event.
+	 * 
+	 * @param action
+	 *            Action.
+	 * @return This instance.
+	 */
+	public RxView<T> onFocus(RxEvent action) {
+		onFocusChange();
+		eventsFocus.add(action);
+		return this;
+	}
+
+	/**
+	 * On Blur Event.
+	 * 
+	 * @param action
+	 *            Action.
+	 * @return This instance.
+	 */
+	public RxView<T> onBlur(RxEvent action) {
+		onFocusChange();
+		eventsFocus.add(action);
 		return this;
 	}
 
@@ -127,5 +181,35 @@ public class RxView<T extends View> {
 	public RxView<T> setContentDescription(String text) {
 		view.setContentDescription(text);
 		return this;
+	}
+
+	protected void onFocusChange() {
+		if ((eventsBlur == null) || (eventsFocus == null)) {
+			final RxView<T> tv = this;
+			final RxActivity x = (RxActivity) view.getContext();
+			final ArrayList<RxEvent> zEventsFocus = eventsFocus;
+			final ArrayList<RxEvent> zEventsBlur = eventsBlur;
+
+			// Events
+			view.setOnFocusChangeListener(new OnFocusChangeListener() {
+				@Override
+				public void onFocusChange(View v, boolean hasFocus) {
+					if (hasFocus) {
+						for (RxEvent evt : zEventsFocus) {
+							evt.Action(tv, x, new RxView<View>(v));
+						}
+					} else {
+						for (RxEvent evt : zEventsBlur) {
+							evt.Action(tv, x, new RxView<View>(v));
+						}
+					}
+				}
+			});
+		}
+
+		if (eventsBlur == null)
+			eventsBlur = new ArrayList<RxEvent>();
+		if (eventsFocus == null)
+			eventsFocus = new ArrayList<RxEvent>();
 	}
 }
