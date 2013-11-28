@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.Toast;
 import ar.com.eduardocuomo.rxandroid.widget.RxView;
 
 /**
@@ -71,6 +72,18 @@ public abstract class RxActivity extends Activity {
 	 */
 	public <T extends RxView<?>> T $(int id) {
 		return findElement(id);
+	}
+
+	/**
+	 * Set Layout.
+	 * 
+	 * @param layout
+	 *            Layout.
+	 * @return
+	 */
+	public RxActivity setLayout(int layout) {
+		setContentView(layout);
+		return this;
 	}
 
 	/**
@@ -241,6 +254,45 @@ public abstract class RxActivity extends Activity {
 			RxVar.VARS.put(key,
 					savedInstanceState.get(_INSTANCE_KEY_BASE + key));
 		}
+	}
+
+	/**
+	 * Create and show a Toast message.
+	 * 
+	 * @param text
+	 *            Message.
+	 * @return Toast instance.
+	 */
+	public Toast toast(CharSequence text) {
+		return toast(text, Toast.LENGTH_SHORT);
+	}
+
+	/**
+	 * Create and show a Toast message.
+	 * 
+	 * @param text
+	 *            Message.
+	 * @param duration
+	 *            Toast duration.
+	 * @return Toast instance.
+	 */
+	public Toast toast(CharSequence text, int duration) {
+		Toast toast = createToast(text, duration);
+		toast.show();
+		return toast;
+	}
+
+	/**
+	 * Create a Toast message.
+	 * 
+	 * @param text
+	 *            Message.
+	 * @param duration
+	 *            Toast duration.
+	 * @return Toast instance.
+	 */
+	public Toast createToast(CharSequence text, int duration) {
+		return Toast.makeText(getApplicationContext(), text, duration);
 	}
 
 	/**
