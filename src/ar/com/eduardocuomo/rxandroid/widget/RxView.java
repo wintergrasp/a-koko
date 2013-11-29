@@ -167,7 +167,7 @@ public class RxView<T extends View> {
 	 */
 	public RxView<T> onBlur(RxEvent action) {
 		onFocusChange();
-		eventsFocus.add(action);
+		eventsBlur.add(action);
 		return this;
 	}
 
