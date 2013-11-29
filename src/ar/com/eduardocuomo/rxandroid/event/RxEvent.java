@@ -16,11 +16,11 @@ public interface RxEvent {
 	 * 
 	 * @param v
 	 *            View.
-	 * @param activity
-	 *            Activity.
+	 * @param mainActivity
+	 *            Main Activity.
 	 * @param callerView
 	 *            Caller View.
 	 */
-	public void Action(RxView<? extends View> v, RxActivity activity,
+	public void Action(RxView<? extends View> v, RxActivity mainActivity,
 			RxView<View> callerView);
 }

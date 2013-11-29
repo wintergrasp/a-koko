@@ -10,6 +10,7 @@ import android.os.Parcelable;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Toast;
+import ar.com.eduardocuomo.akoko.R;
 import ar.com.eduardocuomo.rxandroid.widget.RxView;
 
 /**
@@ -53,12 +54,12 @@ public abstract class RxActivity extends Activity {
 	 * Find a View Element and create {@link #RxView} element.
 	 * 
 	 * @param id
-	 *            ID of view element.
+	 *            {@link R.id} ID of view element.
 	 * @return {@link #RxView} element.
 	 * @see #$
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends RxView<?>> T findElement(int id) {
+	public <T extends RxView<? extends View>> T findElement(int id) {
 		return (T) new RxView<View>(findViewById(id));
 	}
 
@@ -66,11 +67,11 @@ public abstract class RxActivity extends Activity {
 	 * Find a View Element and create {@link #RxView} element.
 	 * 
 	 * @param id
-	 *            ID of view element.
+	 *            {@link R.id} ID of view element.
 	 * @return {@link #RxView} element.
 	 * @see #findElement
 	 */
-	public <T extends RxView<?>> T $(int id) {
+	public <T extends RxView<? extends View>> T $(int id) {
 		return findElement(id);
 	}
 
@@ -78,7 +79,7 @@ public abstract class RxActivity extends Activity {
 	 * Set Layout.
 	 * 
 	 * @param layout
-	 *            Layout.
+	 *            {@link R.layout} Layout.
 	 * @return
 	 */
 	public RxActivity setLayout(int layout) {

@@ -16,12 +16,12 @@ public interface RxEventReturn {
 	 * 
 	 * @param v
 	 *            View
-	 * @param activity
-	 *            Activity
+	 * @param mainActivity
+	 *            Main Activity
 	 * @param callerView
 	 *            Caller View.
 	 * @return TRUE to cancel event.
 	 */
-	public boolean Action(RxView<? extends View> v, RxActivity activity,
+	public boolean Action(RxView<? extends View> v, RxActivity mainActivity,
 			RxView<View> callerView);
 }

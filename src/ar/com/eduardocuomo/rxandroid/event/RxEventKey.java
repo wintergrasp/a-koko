@@ -17,8 +17,8 @@ public interface RxEventKey {
 	 * 
 	 * @param v
 	 *            View
-	 * @param activity
-	 *            Activity
+	 * @param mainActivity
+	 *            Main Activity
 	 * @param keyCode
 	 *            Key Code
 	 * @param event
@@ -27,6 +27,6 @@ public interface RxEventKey {
 	 *            Caller View
 	 * @return TRUE to cancel event.
 	 */
-	public boolean Action(RxView<? extends View> v, RxActivity activity,
+	public boolean Action(RxView<? extends View> v, RxActivity mainActivity,
 			int keyCode, KeyEvent event, RxView<View> callerView);
 }

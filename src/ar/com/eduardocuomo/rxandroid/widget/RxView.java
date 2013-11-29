@@ -286,8 +286,8 @@ public class RxView<T extends View> {
 		return this;
 	}
 
-	protected void onFocusChange() {
-		if ((eventsBlur == null) || (eventsFocus == null)) {
+	private void onFocusChange() {
+		if (eventsBlur == null) {
 			if (eventsBlur == null)
 				eventsBlur = new ArrayList<RxEvent>();
 			if (eventsFocus == null)

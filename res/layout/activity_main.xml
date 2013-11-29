@@ -5,28 +5,11 @@
     tools:context=".MainActivity"
     android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/text1"
+    <GridView
+        android:id="@+id/gridHorario"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/menu_settings"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
+        android:layout_height="match_parent"
+        android:numColumns="3" >
+    </GridView>
 
 </LinearLayout>

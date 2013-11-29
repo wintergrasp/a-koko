@@ -17,14 +17,14 @@ public interface RxEventMotion {
 	 * 
 	 * @param v
 	 *            View
-	 * @param activity
-	 *            Activity
+	 * @param mainActivity
+	 *            Main Activity
 	 * @param event
 	 *            Motion event
 	 * @param callerView
 	 *            Caller View
 	 * @return TRUE to cancel event.
 	 */
-	public boolean Action(RxView<? extends View> v, RxActivity activity,
+	public boolean Action(RxView<? extends View> v, RxActivity mainActivity,
 			MotionEvent event, RxView<View> callerView);
 }
