@@ -1,4 +1,4 @@
-package ar.com.eduardocuomo.rxandroid.event;
+package ar.com.eduardocuomo.rxandroid.widget.event;
 
 import android.view.View;
 import ar.com.eduardocuomo.rxandroid.RxActivity;

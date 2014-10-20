@@ -24,15 +24,26 @@ public abstract class RxActivity extends Activity {
 	 * Prefix for variables saved in instance.
 	 */
 	protected final String _INSTANCE_KEY_BASE = "__[%RxVar%]__{";
+	
+	/**
+	 * Configuration: Layout.
+	 * <br>Use: <code>R.layout</code> 
+	 * 
+	 * @return R.layout
+	 * @see #R.layout
+	 */
+	protected abstract int CFG_LAYOUT();
 
 	/**
 	 * Constructor.
 	 */
-	public RxActivity() {
+	protected RxActivity() {
 		super();
 		if (!RxAndroid.hasMainApplication()) {
 			RxAndroid.setMainApplication(this);
 		}
+		
+		setLayout(CFG_LAYOUT());
 	}
 
 	@Override
@@ -54,7 +65,7 @@ public abstract class RxActivity extends Activity {
 	 * Find a View Element and create {@link #RxView} element.
 	 * 
 	 * @param id
-	 *            {@link R.id} ID of view element.
+	 *            {@link R.id} View ID.
 	 * @return {@link #RxView} element.
 	 * @see #$
 	 */
@@ -64,10 +75,22 @@ public abstract class RxActivity extends Activity {
 	}
 
 	/**
+	 * Find a View by ID.
+	 * 
+	 * @param id
+	 *            View ID.
+	 * @return View.
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends View> T $$(int id) {
+		return (T) findViewById(id);
+	}
+
+	/**
 	 * Find a View Element and create {@link #RxView} element.
 	 * 
 	 * @param id
-	 *            {@link R.id} ID of view element.
+	 *            {@link R.id} View ID.
 	 * @return {@link #RxView} element.
 	 * @see #findElement
 	 */

@@ -1,5 +1,6 @@
-package ar.com.eduardocuomo.rxandroid.event;
+package ar.com.eduardocuomo.rxandroid.widget.event;
 
+import android.view.KeyEvent;
 import android.view.View;
 import ar.com.eduardocuomo.rxandroid.RxActivity;
 import ar.com.eduardocuomo.rxandroid.widget.RxView;
@@ -9,7 +10,7 @@ import ar.com.eduardocuomo.rxandroid.widget.RxView;
  * 
  * @author Eduardo Daniel Cuomo <eduardo.cuomo.ar@gmail.com>
  */
-public interface RxEventReturn {
+public interface RxEventKey {
 
 	/**
 	 * Event action.
@@ -18,10 +19,14 @@ public interface RxEventReturn {
 	 *            View
 	 * @param mainActivity
 	 *            Main Activity
+	 * @param keyCode
+	 *            Key Code
+	 * @param event
+	 *            Key Event
 	 * @param callerView
-	 *            Caller View.
+	 *            Caller View
 	 * @return TRUE to cancel event.
 	 */
 	public boolean Action(RxView<? extends View> v, RxActivity mainActivity,
-			RxView<View> callerView);
+			int keyCode, KeyEvent event, RxView<View> callerView);
 }

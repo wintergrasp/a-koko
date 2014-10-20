@@ -12,10 +12,10 @@ import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.TextView;
 import ar.com.eduardocuomo.rxandroid.RxActivity;
-import ar.com.eduardocuomo.rxandroid.event.RxEvent;
-import ar.com.eduardocuomo.rxandroid.event.RxEventKey;
-import ar.com.eduardocuomo.rxandroid.event.RxEventMotion;
-import ar.com.eduardocuomo.rxandroid.event.RxEventReturn;
+import ar.com.eduardocuomo.rxandroid.widget.event.RxEvent;
+import ar.com.eduardocuomo.rxandroid.widget.event.RxEventKey;
+import ar.com.eduardocuomo.rxandroid.widget.event.RxEventMotion;
+import ar.com.eduardocuomo.rxandroid.widget.event.RxEventReturn;
 
 /**
  * Extended view element.

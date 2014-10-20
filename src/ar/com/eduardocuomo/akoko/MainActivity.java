@@ -1,16 +1,17 @@
 package ar.com.eduardocuomo.akoko;
 
-import android.widget.GridView;
 import ar.com.eduardocuomo.rxandroid.RxActivity;
-import ar.com.eduardocuomo.rxandroid.widget.RxView;
+import ar.com.eduardocuomo.rxandroid.RxProperty;
 
 public class MainActivity extends RxActivity {
-
-	RxView<GridView> grid;
+	
+	@Override
+	protected int CFG_LAYOUT() {
+		return R.layout.activity_main;
+	}
 
 	@Override
 	protected void onCreate() {
 		setLayout(R.layout.activity_main);
-		grid = $(R.id.gridHorario);
 	}
 }
