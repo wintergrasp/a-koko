@@ -1,0 +1,11 @@
+#data {
+	text-align: center;
+}
+
+#data table {
+	margin: auto;
+}
+
+#data table td {
+	border-left: 1px solid #CCCCCC;
+}

@@ -1,4 +1,4 @@
 Android KoKo
 =============
 
-Android KoKo + RxAndroid
+Android KoKo
