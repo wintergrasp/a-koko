@@ -3,7 +3,9 @@ CFG.data.loc = [
 	'Neuquen', // 1
 	'Cipolletti', // 2
 	'Cipolletti (x Alem)', // 3
+	'Puente 83', // 4
 	'Fernandez Oro', // 5
+	'Isla 10', // 6
 	'Allen', // 7
 	'Hospital', // 8
 	'Santa Catalina', // 9

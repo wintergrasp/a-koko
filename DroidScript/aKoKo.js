@@ -227,9 +227,6 @@ function DetailShow() {
         app.SaveText("Form_day", selected.day);
         app.SaveText('Form_type', selected.type);
         
-        // Details Visible
-        _layDetailVisible = true;
-        
         // Go to current time
         var data, s, h, x, d, y, t;
         
@@ -239,6 +236,9 @@ function DetailShow() {
         if (data.length === 0) {
             app.Alert("No existen horarios para este recorrido");
         } else {
+            // Details Visible
+            _layDetailVisible = true;
+            
             Utils.List.Set(lstHorarios, data);
             
             d = new Date();
