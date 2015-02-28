@@ -3,17 +3,17 @@ CFG.data.loc = [
 	'Neuquen', // 1
 	'Cipolletti', // 2
 	'Cipolletti (x Alem)', // 3
-	'Fernandez Oro', // 4
-	'Allen', // 5
-	'Hospital', // 6
-	'Santa Catalina', // 7
-	'Guerrico', // 8
-	'J. J. Gomez', // 9
-	'General Roca', // 10
-	'Stefenelli', // 11
-	'Cervantes', // 12
-	'Mainque', // 13
-	'Huergo', // 14
-	'Godoy', // 15
-	'Villa Regina' // 16
+	'Fernandez Oro', // 5
+	'Allen', // 7
+	'Hospital', // 8
+	'Santa Catalina', // 9
+	'Gerrico', // 10
+	'J. J. Gomez', // 11
+	'General Roca', // 12
+	'Stefenelli', // 13
+	'Cervantes', // 14
+	'Mainque', // 15
+	'Huergo', // 16
+	'Godoy', // 17
+	'Villa Regina' // 18
 ];

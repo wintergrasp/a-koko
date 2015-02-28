@@ -5,39 +5,44 @@ var loc = [
 	'Neuquen', // 1
 	'Cipolletti', // 2
 	'Cipolletti (x Alem)', // 3
-	'Fernandez Oro', // 4
-	'Allen', // 5
-	'Hospital', // 6
-	'Santa Catalina', // 7
-	'Gerrico', // 8
-	'J. J. Gomez', // 9
-	'General Roca', // 10
-	'Stefenelli', // 11
-	'Cervantes', // 12
-	'Mainque', // 13
-	'Huergo', // 14
-	'Godoy', // 15
-	'Villa Regina' // 16
+	'Puente 83', // 4
+	'Fernandez Oro', // 5
+	'Isla 10', // 6
+	'Allen', // 7
+	'Hospital', // 8
+	'Santa Catalina', // 9
+	'Gerrico', // 10
+	'J. J. Gomez', // 11
+	'General Roca', // 12
+	'Stefenelli', // 13
+	'Cervantes', // 14
+	'Mainque', // 15
+	'Huergo', // 16
+	'Godoy', // 17
+	'Villa Regina' // 18
 ];
 
+
 var locConv = {
-	0: ['terminal'],
+	0: ['terminal', 'eton'],
 	1: ['nqn', 'neuqu'],
 	2: ['cipo'],
 	3: ['alem'],
-	4: ['oro', 'fernandez oro'],
-	5: ['allen'],
-	6: ['hospital'],
-	7: ['catalina', 'stacat'],
-	8: ['guerrico'],
-	9: ['gomez'],
-	10: ['roca'],
-	11: ['stefenelli'],
-	12: ['cervantes'],
-	13: ['mainque', 'maique'],
-	14: ['huergo'],
-	15: ['godoy'],
-	16: ['regina']
+	4: ['83'],
+	5: ['oro', 'fernandez oro'],
+	6: ['10'],
+	7: ['allen'],
+	8: ['hospital'],
+	9: ['catalina', 'stacat'],
+	10: ['guerrico'],
+	11: ['gomez'],
+	12: ['roca'],
+	13: ['stefenelli'],
+	14: ['cervantes'],
+	15: ['mainque', 'maique'],
+	16: ['huergo'],
+	17: ['godoy'],
+	18: ['regina']
 };
 
 function buildTable(cont, o) {
@@ -134,6 +139,20 @@ function proccessTable(txtIn, table) {
 	return o;
 }
 
+function getFileCont(o, title, days) {
+	return '// ' + title + '\n' +
+		'// ' + days + '\n' +
+		('[' + o.toStr() + ']')
+			.replace('\[{', '[\n\t{')
+			.replace(/\}\]/g, '\n\t}\n]')
+			.replace(/\{"/g, '{\n\t\t"')
+			.replace(/\},\{/g, '\n\t},\n\t{')
+			.replace(/":/g, '": ')
+			.replace(/,"/g, ',\n\t\t"')
+			//.replace(/"/g, '')
+		;
+}
+
 function proccess() {
 	// Roca -> Allen
 	var o = proccessTable('txtInRA', '#tableOutRA');
@@ -144,18 +163,8 @@ function proccess() {
 	localStorage.setItem('txtDays', $('#txtDays').val());
 
 	// Output
-	$('#txtOut').val(
-		'// ' + $('#txtTitle').val() + '\n' +
-		'// ' + $('#txtDays').val() + '\n' +
-		('[' + o.toStr() + ']')
-			.replace('\[{', '[\n\t{')
-			.replace(/\}\]/g, '\n\t}\n]')
-			.replace(/\{"/g, '{\n\t\t"')
-			.replace(/\},\{/g, '\n\t},\n\t{')
-			.replace(/":/g, '": ')
-			.replace(/,"/g, ',\n\t\t"')
-			//.replace(/"/g, '')
-		);
+	$('#txtOut').val(getFileCont(o,
+		$('#txtTitle').val(), $('#txtDays').val()));
 }
 
 $(function () {
