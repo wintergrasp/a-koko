@@ -165,9 +165,11 @@ $$.Utils = {
 			return txt;
 		},
 		
-		CreateText: function (str) {
-			var txt = app.CreateText(str, 1, null, "Left" );
-			txt.SetTextSize(CFG.app.style.text.size);
+		CreateText: function (str, size, onTouch) {
+			var txt = app.CreateText(str, 0.9, null, "Left" );
+			txt.SetTextSize(size || CFG.app.style.text.size);
+			if (onTouch)
+				txt.SetOnTouch(onTouch);
 			return txt;
 		},
 		
