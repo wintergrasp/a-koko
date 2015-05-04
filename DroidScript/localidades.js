@@ -9,7 +9,7 @@ CFG.data.loc = [
 	'Allen', // 7
 	'Hospital', // 8
 	'Santa Catalina', // 9
-	'Gerrico', // 10
+	'Guerrico', // 10
 	'J. J. Gomez', // 11
 	'General Roca', // 12
 	'Stefenelli', // 13

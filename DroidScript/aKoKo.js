@@ -35,6 +35,8 @@ function OnStart() {
 		setBackcolor: CFG.app.style.backcolor
 	});*/
 	
+	app.Alert("Los horarios posiblemente NO corresponden con los vigentes!\nLos nuevos horarios serán actualizados tan pronto como sea posible.\nPor el momento, NO disponemos de los horarios oficiales en formato Excel (XLS).\n\nDisculpen las molestias.", "Aviso importante!");
+	
 	InitLayMain();
 	
 	InitLayAbout();
