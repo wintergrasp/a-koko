@@ -35,7 +35,7 @@ function OnStart() {
 		setBackcolor: CFG.app.style.backcolor
 	});*/
 	
-	app.Alert("Los horarios posiblemente NO corresponden con los vigentes!\nLos nuevos horarios serán actualizados tan pronto como sea posible.\nPor el momento, NO disponemos de los horarios oficiales en formato Excel (XLS).\n\nDisculpen las molestias.", "Aviso importante!");
+	//app.Alert("Los horarios posiblemente NO corresponden con los vigentes!\nLos nuevos horarios serán actualizados tan pronto como sea posible.\nPor el momento, NO disponemos de los horarios oficiales en formato Excel (XLS).\n\nDisculpen las molestias.", "Aviso importante!");
 	
 	InitLayMain();
 	
@@ -55,6 +55,9 @@ function OnStart() {
 	app.AddLayout(layMain);
 	app.AddLayout(layAbout);
 	app.AddLayout(layDetail);
+
+	// ADS
+	AddAds();
 }
 
 function OnBack() {
@@ -292,4 +295,18 @@ function DetailHide() {
 function AboutHide() {
 	_layAboutVisible = false;
 	layAbout.Animate("SlideToLeft");
+}
+
+
+/** *** **
+ *  ADS  *
+ ** *** **/
+
+var webADS;
+
+function AddAds() {
+	webADS = app.CreateWebView(1, 0.13);
+	layMain.AddChild(webADS);
+	webADS.SetMargins(0, 0.01, 0, 0);
+	webADS.LoadUrl("http://eduardocuomo.com.ar/ads/480x60.html?_=" + ((new Date()).getTime()));
 }
