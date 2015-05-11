@@ -305,8 +305,8 @@ function AboutHide() {
 var webADS;
 
 function AddAds() {
-	webADS = app.CreateWebView(1, 0.13);
+	webADS = app.CreateWebView(1, 0.4);
 	layMain.AddChild(webADS);
 	webADS.SetMargins(0, 0.01, 0, 0);
-	webADS.LoadUrl("http://eduardocuomo.com.ar/ads/480x60.html?_=" + ((new Date()).getTime()));
+	webADS.LoadUrl("http://eduardocuomo.com.ar/ads/auto.html?_=" + ((new Date()).getTime()));
 }
