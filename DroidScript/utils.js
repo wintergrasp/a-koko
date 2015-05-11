@@ -131,7 +131,8 @@ $$.Utils = {
 						ti = i;
 					}
 					if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
-						if (fh < th) { // From < To
+						// Fix BUG Fredy: No muestra horarios luego de las 00:00
+						//if (fh < th) { // From HRW < To HRS
 							data.push({
 								title: '%0 | %1'
 									.format(fh.toHour(), CFG.data.loc[fl]),
@@ -139,7 +140,7 @@ $$.Utils = {
 									.format(th.toHour(), CFG.data.loc[tl]),
 								extra: Utils.Locations.ListToString(horas)
 							});
-						}
+						//}
 						return false;
 					}
 					i++;
