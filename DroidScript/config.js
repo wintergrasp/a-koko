@@ -16,7 +16,7 @@ this.CFG = {
 			backimg2: '/Sys/Img/GreenBack.png'
 		},
 		horarios: {
-			fecha: '01/02/2015' // Fecha de carga
+			fecha: '05/05/2015' // Fecha de carga
 		}
 	},
 	// Data

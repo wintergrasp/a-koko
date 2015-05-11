@@ -34,7 +34,7 @@ var locConv = {
 	7: ['allen'],
 	8: ['hospital'],
 	9: ['catalina', 'stacat'],
-	10: ['guerrico'],
+	10: ['guerrico', 'gerrico'],
 	11: ['gomez'],
 	12: ['roca'],
 	13: ['stefenelli'],
@@ -42,7 +42,7 @@ var locConv = {
 	15: ['mainque', 'maique'],
 	16: ['huergo'],
 	17: ['godoy'],
-	18: ['regina']
+	18: ['regina', 'villa']
 };
 
 function buildTable(cont, o) {
