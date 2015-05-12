@@ -302,11 +302,37 @@ function AboutHide() {
  *  ADS  *
  ** *** **/
 
-var webADS;
+var webADS,
+    adsClick = 0,
+    adsOk = true;
 
 function AddAds() {
-	webADS = app.CreateWebView(1, 0.4);
-	layMain.AddChild(webADS);
-	webADS.SetMargins(0, 0.01, 0, 0);
-	webADS.LoadUrl("http://eduardocuomo.com.ar/ads/auto.html?_=" + ((new Date()).getTime()));
+    var addTime = app.LoadNumber("adsClick", -1),
+        now = (new Date()).getTime();
+    
+    if ((addTime == -1) || (addTime < now)) {
+    	webADS = app.CreateWebView(1, 0.4);
+    	layMain.AddChild(webADS);
+    	webADS.SetMargins(0, 0.01, 0, 0);
+    	webADS.SetOnProgress(webADS_OnProgess);
+    	webADS.LoadUrl("http://eduardocuomo.com.ar/ads/auto.html?_=" + ((new Date()).getTime()));
+    }
+}
+
+function webADS_OnProgess(progress) {
+	if ((adsClick >= 3) && (progress >= 95)) {
+	    if (adsOk) {
+	        adsOk = false;
+    	    setTimeout(function () {
+    	        // Ocultar Add por un tiempo
+    	        alert("Muchas gracias por apoyar el proyecto!\nNo volverás a ver esto hasta la semana que viene.", "Gracias!");
+		        app.SaveNumber("adsClick", (new Date()).getTime() + (7 * 24 * 60 * 60 * 1000));
+    	        setTimeout(function () {
+    	            webADS.SetVisibility("Hide");
+    	        }, 5000);
+            }, 5000);
+	    }
+	} else if (progress === 100) {
+        adsClick++;
+	}
 }
