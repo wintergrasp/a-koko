@@ -1,0 +1,26 @@
+<div class="container" ng-controller="AboutController">
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="mdi-image-grid-on prefix"></i>
+			<input type="text" value="05/05/2015" readonly />
+			<label class="active">Vigencia de horarios</label>
+		</div>
+		<div class="input-field col s12">
+			<i class="mdi-action-info-outline prefix"></i>
+			<input type="text" ng-model="txtVersion" readonly />
+			<label class="active">Versi&oacute;n</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="input-field col s12">
+			<i class="mdi-action-assignment-ind prefix"></i>
+			<input type="text" value="Eduardo Daniel Cuomo" readonly />
+			<label class="active">Creado por</label>
+		</div>
+		<div ng-click="doSendMail()" class="input-field col s12">
+			<i class="mdi-content-mail prefix"></i>
+			<input ng-model="txtEmail" type="text" readonly />
+			<label class="active">Contacto</label>
+		</div>
+	</div>
+</div>

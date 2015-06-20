@@ -1,0 +1,42 @@
+<form class="container" ng-controller="FormController" ng-submit="verHorarios()">
+	<div class="row">
+		<div class="col s12">
+			<label>Desde</label>
+			<select ng-model="formData.desde"
+				ng-options="c.id as c.text for c in db.ciudades"
+				class="browser-default" required>
+				<option value="" disabled selected>Desde...</option>
+			</select>
+		</div>
+		<div class="col s12">
+			<label>Hasta</label>
+			<select ng-model="formData.hasta"
+				ng-options="c.id as c.text for c in db.ciudades"
+				class="browser-default" required>
+				<option value="" disabled selected>Hasta...</option>
+			</select>
+		</div>
+		<div class="col s12">
+			<label>Día</label>
+			<select ng-model="formData.dia"
+				ng-options="d.id as d.text for d in db.dias"
+				class="browser-default" required>
+			</select>
+		</div>
+		<div class="col s12">
+			<label>Tipo</label>
+			<select ng-model="formData.tipo"
+				ng-options="t.id as t.text for t in db.tipos"
+				class="browser-default" required>
+			</select>
+		</div>
+	</div>
+	<div>
+		<div class="col s12" style="text-align: center">
+			<button class="btn waves-effect waves-light red darken-1" type="submit" name="action">
+				VER HORARIOS
+				<i class="mdi-content-send right"></i>
+			</button>
+		</div>
+	</div>
+</form>

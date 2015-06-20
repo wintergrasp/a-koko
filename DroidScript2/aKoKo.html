@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="akoko">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+		<meta name="theme-color" content="#FFFFFF">
+		<title>A-KoKo: Horarios</title>
+		<!-- CSS  -->
+		<link href="css/materialize.css" type="text/css" rel="stylesheet">
+		<link href="css/style.css" type="text/css" rel="stylesheet" >
+		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" >
+		<!-- Scripts -->
+		<script src='file:///android_asset/app.js'></script><!-- DroidScript -->
+		<script src="js/modernizr.js"></script>
+		<script src="js/angular.min.js"></script>
+	</head>
+	<body class="scrollspy" ng-controller="MainController">
+		<!--Navigation-->
+		<div class="navbar-fixed">
+			<nav class="default_color" role="navigation">
+				<div class="container">
+					<div class="nav-wrapper">
+						<a id="logo-container" href="#!" class="brand-logo">A-KoKo</a>
+						<a id="main-menu" href="#!" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+						<!-- Menu Desktop -->
+						<ul class="right hide-on-med-and-down">
+							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}">
+								<a href="#!" ng-click="setPage(menu.key)">
+									<i class="{{menu.icon}} left"></i>
+									{{menu.text}}
+								</a>
+							</li>
+						</ul>
+						<!-- Menu Mobile -->
+						<ul id="nav-mobile" class="right side-nav">
+							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}">
+								<a href="#!" ng-click="setPage(menu.key)" id="menu-item-{{menu.key}}">
+									<i class="{{menu.icon}} left"></i>
+									{{menu.text}}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<div class="section scrollspy" ng-include="'Html/form.html'" ng-show="isPage('form')"></div>
+		<div class="section scrollspy" ng-include="'Html/horarios.html'" ng-show="isPage('horarios')"></div>
+		<div class="section scrollspy" ng-include="'Html/about.html'" ng-show="isPage('about')"></div>
+
+		<!-- Scripts -->
+		<script src="js/jquery.min.js"></script>
+		<script src="js/materialize.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>
