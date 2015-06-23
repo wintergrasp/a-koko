@@ -1,4 +1,12 @@
-<h2>{{titulo}}</h2>
-<ul class="collection" ng-controller="HorariosController">
-	<li ng-repeat="horario in horarios" class="collection-item">{{horario}}</li>
-</ul>
+<div ng-controller="HorariosController">
+	<h5 style="text-align: center">{{getTitulo()}}</h5>
+	<ul class="collection">
+		<li ng-repeat="hr in horarios" ng-class="{'collection-item': true, 'active': hr.active}">
+			<span class="title"><b>{{hr.hora.toHour()}}</b> {{hr.localidad.text}}</span>
+			<br />
+			<ul class="recorrido">
+				<li ng-repeat="loc in hr.recorrido">&gt; <i>{{loc.text}}</i></li>
+			</ul>
+		</li>
+	</ul>
+</div>

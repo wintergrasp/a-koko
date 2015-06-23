@@ -272,3 +272,8 @@ footer.page-footer {
 body {
 	background-color: #FFFFFF;
 }
+
+.recorrido li {
+	display: inline;
+	margin-left: 5px;
+}

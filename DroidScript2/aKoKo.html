@@ -13,7 +13,6 @@
 		<!-- Scripts -->
 		<script src="js/modernizr.js"></script>
 		<script src="js/angular.min.js"></script>
-		<script src="js/cookies.js"></script>
 
 		<!-- DroidScript -->
 		<script src='file:///android_asset/app.js'></script>
@@ -38,7 +37,7 @@
 						<a id="main-menu" href="#!" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 						<!-- Menu Desktop -->
 						<ul class="right hide-on-med-and-down">
-							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}">
+							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}" ng-show="isPageVisible(menu.key)">
 								<a href="#!" ng-click="setPage(menu.key)">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
@@ -47,7 +46,7 @@
 						</ul>
 						<!-- Menu Mobile -->
 						<ul id="nav-mobile" class="right side-nav">
-							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}">
+							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}" ng-show="isPageVisible(menu.key)">
 								<a href="#!" ng-click="setPage(menu.key)" id="menu-item-{{menu.key}}">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
@@ -59,9 +58,9 @@
 			</nav>
 		</div>
 
-		<div class="section scrollspy" ng-include="'Html/form.html'" ng-show="isPage('form')"></div>
-		<div class="section scrollspy" ng-include="'Html/horarios.html'" ng-show="isPage('horarios')"></div>
-		<div class="section scrollspy" ng-include="'Html/about.html'" ng-show="isPage('about')"></div>
+		<div class="section scrollspy" ng-show="isPage('form')" ng-include="'Html/form.html'"></div>
+		<div class="section scrollspy" ng-show="isPage('horarios')" ng-include="'Html/horarios.html'"></div>
+		<div class="section scrollspy" ng-show="isPage('about')" ng-include="'Html/about.html'"></div>
 
 		<!-- Scripts -->
 		<script src="js/jquery.min.js"></script>
