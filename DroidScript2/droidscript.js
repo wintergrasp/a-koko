@@ -57,11 +57,11 @@ var backClick = 0,
 function OnBack() {
 	var scope = MainController();
 	scope.$apply(function () {
-		if (scope.isPage('form')) {
-			app.Exit();
+		if (Menu.isVisible()) {
+			Menu();
 		} else {
-			if (Menu.isVisible()) {
-				Menu();
+			if (scope.isPage('form')) {
+				app.Exit();
 			} else {
 				scope.setPage('form');
 			}
