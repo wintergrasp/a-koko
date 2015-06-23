@@ -44,11 +44,9 @@ if (this.app) {
 	};
 }
 
-var rootScope;
-
-function Menu() {
-	$('#main-menu').click();
-}
+function MainController() { return angular.element($('#MainController')).scope(); }
+function Menu() { $('#main-menu').click(); }
+Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 (function () {
 	var selected = {};
@@ -57,8 +55,6 @@ function Menu() {
 		.module('akoko', [])
 
 		.controller('MainController', ['$scope', function ($scope) {
-			rootScope = $scope;
-
 			$scope.menuOptions = [
 				  { key: 'form',		icon: 'mdi-action-search',			text: 'Buscar' }
 				, { key: 'horarios',	icon: 'mdi-device-access-time',		text: 'Horarios' }
@@ -199,12 +195,18 @@ var backClick = 0,
 	backClickTO;
 
 function OnBack() {
-	if (rootScope.isPage('form')) {
-		app.Exit();
-	} else {
-		app.ShowPopup('Menu -> Salir', 'Short');
-		Menu();
-	}
+	var scope = MainController();
+	scope.$apply(function () {
+		if (scope.isPage('form')) {
+			app.Exit();
+		} else {
+			if (Menu.isVisible()) {
+				Menu();
+			} else {
+				scope.setPage('form');
+			}
+		}
+	});
 }
 
 function OnMenu(item) {
