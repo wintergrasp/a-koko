@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="akoko">
 	<head>
+		<meta content="favicon.png" itemprop="image"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 		<meta name="theme-color" content="#FFFFFF">
@@ -10,9 +11,22 @@
 		<link href="css/style.css" type="text/css" rel="stylesheet" >
 		<link href="css/font-awesome.min.css" type="text/css" rel="stylesheet" >
 		<!-- Scripts -->
-		<script src='file:///android_asset/app.js'></script><!-- DroidScript -->
 		<script src="js/modernizr.js"></script>
 		<script src="js/angular.min.js"></script>
+		<script src="js/cookies.js"></script>
+
+		<!-- DroidScript -->
+		<script src='file:///android_asset/app.js'></script>
+		<script src="droidscript.js"></script>
+
+		<!-- APP -->
+		<script src="cfg.js"></script>
+		<script src="utils.js"></script>
+
+		<script src="db.js"></script>
+		<script src="db.dias.js"></script>
+		<script src="db.localidades.js"></script>
+		<script src="db.tipos.js"></script>
 	</head>
 	<body class="scrollspy" id="MainController" ng-controller="MainController">
 		<!--Navigation-->

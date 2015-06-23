@@ -3,7 +3,7 @@
 		<div class="col s12">
 			<label>Desde</label>
 			<select ng-model="formData.desde"
-				ng-options="c.id as c.text for c in db.ciudades"
+				ng-options="c.id as c.text for c in db.localidades | orderBy: 'order'"
 				class="browser-default" required>
 				<option value="" disabled selected>Desde...</option>
 			</select>
@@ -11,7 +11,7 @@
 		<div class="col s12">
 			<label>Hasta</label>
 			<select ng-model="formData.hasta"
-				ng-options="c.id as c.text for c in db.ciudades"
+				ng-options="c.id as c.text for c in db.localidades | orderBy: 'order'"
 				class="browser-default" required>
 				<option value="" disabled selected>Hasta...</option>
 			</select>
