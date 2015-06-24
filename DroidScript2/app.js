@@ -8,125 +8,6 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 	var __selected = { isSelected: false },
 		__horarios = [];
 
-	/*function buscarHorarios() {
-		var data   = [],
-			fromId = __selected.desde,
-			toId   = __selected.hasta,
-			dayId  = __selected.dia,
-			typeId = __selected.tipo,
-			hrs  = getHorasFromTipo(),
-			fl, tl, fi, ti, hr, hora, horas, locId, fh, th, i;
-
-		$each(hrs, function (hr, horas) {
-			fl = -1;
-			tl = -1;
-			fi = -1;
-			ti = -1;
-			i = 0;
-
-			$each(horas, function (hora, locId) {
-				if (fromId === locId) {
-					fl = fromId;
-					fh = parseFloat(hora);
-					fi = i;
-				}
-
-				if (toId === locId) {
-					tl = toId;
-					th = parseFloat(hora);
-					ti = i;
-				}
-
-				if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
-					data.push({
-						hora: fh,
-						localidad: fl,
-						active: '',
-						recorrido: []
-					});
-
-					return false;
-				}
-
-				i++;
-			});
-		});
-
-		data.sortBy('hora');
-
-		return data;
-	}*/
-
-	function prepararHorarios() {
-		var horarios, h, x, d, y;
-
-		//horarios = buscarHorarios();
-		horarios = [
-			{
-				hora: 8.20,
-				localidad: { id: 1, text: 'Roca' },
-				active: false,
-				recorrido: [
-					{ id: 1, text: 'Roca' },
-					{ id: 2, text: 'Allen' },
-					{ id: 3, text: 'Nqn' }
-				]
-			},
-			{
-				hora: 8.30,
-				localidad: { id: 1, text: 'Roca' },
-				active: true,
-				recorrido: [
-					{ id: 1, text: 'Roca' },
-					{ id: 2, text: 'Allen' },
-					{ id: 3, text: 'Nqn' }
-				]
-			},
-			{
-				hora: 8.40,
-				localidad: { id: 1, text: 'Roca' },
-				active: false,
-				recorrido: [
-					{ id: 1, text: 'Roca' },
-					{ id: 2, text: 'Allen' },
-					{ id: 3, text: 'Nqn' }
-				]
-			},
-			{
-				hora: 8.50,
-				localidad: { id: 1, text: 'Roca' },
-				active: false,
-				recorrido: [
-					{ id: 1, text: 'Roca' },
-					{ id: 2, text: 'Allen' },
-					{ id: 3, text: 'Nqn' }
-				]
-			}
-		];
-
-		if (horarios.length === 0) {
-			app.Alert("No existen horarios para este recorrido");
-		} else {
-			d = new Date();
-			h = d.getHours() + (d.getMinutes() / 100);
-			x = 999;
-
-			$each(horarios, function (i, v) {
-				d = v.hora - h;
-				if (d < 0) d = (-1) * d;
-				if (d < x) {
-					x = d;
-					y = i;
-				}
-			});
-
-			horarios[y].active = 'active';
-		}
-
-		// Mostrar horarios
-		return horarios;
-	}
-
 	angular
 		.module('akoko', [])
 
@@ -196,7 +77,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 						, hasta: $scope.formData.hasta
 						, dia: $scope.formData.dia
 						, tipo: $scope.formData.tipo
-						, isSelected: true
+						, isSelected: false
 					};
 
 					// Save selection
@@ -205,8 +86,13 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 					app.SaveNumber("Form_dia__", __selected.dia);
 					app.SaveNumber('Form_tipo__', __selected.tipo);
 
-					__horarios = prepararHorarios($scope);
-					$scope.$parent.setPage('horarios');
+					var hrs = horariosUtils.buscarHorarios(__selected.desde, __selected.hasta, __selected.dia, __selected.tipo);
+					__horarios = horariosUtils.prepararHorarios(hrs);
+
+					if (__horarios.length > 0) {
+						__selected.isSelected = true;
+						$scope.$parent.setPage('horarios');
+					}
 				}
 			};
 		}])

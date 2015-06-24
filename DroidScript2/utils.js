@@ -14,6 +14,8 @@
 		}
 	}
 
+	String.SortMode = SortMode;
+
 	Object.defineProperties(Array.prototype, {
 		contains: { value: function (x) { return this.indexOf(x) > -1; } },
 		sortBy: {
@@ -23,7 +25,9 @@
 					for (i = arguments.length - 1; i >= 0; i--)
 						this.sortBy(arguments[i]);
 				} else {
-					if (col instanceof SortMode) {
+					if (typeof col === 'function')
+						col = col.apply(col);
+					if (col instanceof String.SortMode) {
 						if (col.desc) {
 							// DESC
 							col = col.value;
@@ -110,8 +114,6 @@
 		asc: { value: function () { return String.SortMode(this, false); }}
 	});
 
-	String.SortMode = SortMode;
-
 	Number.prototype.toHour = function () {
 		return (this + '').toHour();
 	};
@@ -125,3 +127,91 @@ function $each(o, fn) {
 			return false; // Break
 	return true; // All finish
 }
+
+var horariosUtils = {
+
+	/*return [
+		{
+			hora: 8.20,
+			localidad: { id: 1, text: 'Roca' },
+			active: false,
+			recorrido: [
+				{ id: 1, text: 'Roca' },
+				{ id: 2, text: 'Allen' },
+				{ id: 3, text: 'Nqn' }
+			]
+		}
+	];*/
+	buscarHorarios: function (desde, hasta, dia, tipo) {
+		var data = [],
+			fl, tl, fi, ti, fh, th, i;
+
+		$each($db.horarios, function (x, horario) {
+			if ((horario.dia === dia) && (horario.tipo === tipo)) {
+				fl = -1;
+				tl = -1;
+				fi = -1;
+				ti = -1;
+				i = 0;
+
+				$each(horario.recorrido, function (x, recorrido) {
+					if (desde === recorrido.localidad) {
+						fl = desde;
+						fh = recorrido.hora;
+						fi = i;
+					}
+
+					if (hasta === recorrido.localidad) {
+						tl = hasta;
+						th = recorrido.hora;
+						ti = i;
+					}
+
+					if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
+						data.push({
+							hora: fh,
+							localidad: $db.localidades.get(fl),
+							active: false,
+							recorrido: recorrido
+						});
+
+						return false;
+					}
+
+					i++;
+				});
+			}
+		});
+
+		if (data.length > 0)
+			data.sortBy('hora');
+
+		return data;
+	},
+
+	prepararHorarios: function (horarios) {
+		var h, x, d, y;
+
+		if (horarios.length === 0) {
+			app.Alert("No existen horarios para este recorrido");
+		} else {
+			d = new Date();
+			h = d.getHours() + (d.getMinutes() / 100);
+			x = 999;
+
+			$each(horarios, function (i, v) {
+				d = v.hora - h;
+				if (d < 0) d = (-1) * d;
+				if (d < x) {
+					x = d;
+					y = i;
+				}
+			});
+
+			horarios[y].active = true;
+		}
+
+		// Mostrar horarios
+		return horarios;
+	}
+};

@@ -22,7 +22,8 @@ if (this.app) {
 		}
 
 		, Alert: function (m, t) {
-			alert(t + '\n\t' + m);
+			if (t) m = t + '\n\t' + m;
+			alert(m);
 		}
 
 		, ShowPopup: function (m) {
