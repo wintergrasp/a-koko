@@ -4,10 +4,9 @@
 		<li ng-repeat="hr in horarios" ng-class="{'collection-item': true, 'active': hr.active}">
 			<span class="title"><b>{{hr.hora.toHour()}}</b> {{hr.localidad.text}}</span>
 			<br />
-			<span ng-repeat="loc in hr.recorrido"
-				onclick="app.Alert('Pasa por {{$db.localidades.get(loc.localidad).text}}: {{loc.hora.toHour()}}')">
+			<span ng-repeat="loc in hr.recorrido" ng-click="showRecorridoInfo(loc)">
 				&gt;
-				<i>{{$db.localidades.get(loc.localidad).text}}</i>
+				<i>{{loc.localidad}}</i>
 			</span>
 		</li>
 	</ul>

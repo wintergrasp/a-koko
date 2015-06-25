@@ -32,7 +32,6 @@ var $db = {
 	*/],
 	horarios: [/*
 		{
-			id: 1,
 			dia: 2,
 			tipo: 3,
 			recorrido: [

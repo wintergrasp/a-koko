@@ -82,9 +82,9 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 					// Save selection
 					app.SaveNumber("Form_desde", __selected.desde);
-					app.SaveNumber("Form_hasta__", __selected.hasta);
-					app.SaveNumber("Form_dia__", __selected.dia);
-					app.SaveNumber('Form_tipo__', __selected.tipo);
+					app.SaveNumber("Form_hasta", __selected.hasta);
+					app.SaveNumber("Form_dia", __selected.dia);
+					app.SaveNumber('Form_tipo', __selected.tipo);
 
 					var hrs = horariosUtils.buscarHorarios(__selected.desde, __selected.hasta, __selected.dia, __selected.tipo);
 					__horarios = horariosUtils.prepararHorarios(hrs);
@@ -102,6 +102,10 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				if (!__selected.isSelected)
 					return '';
 				return $db.tipos.get(__selected.tipo).text + ' | ' + $db.dias.get(__selected.dia).text;
+			};
+
+			$scope.showRecorridoInfo = function (loc) {
+				app.Alert('Pasa por "' + loc.localidad + '": ' + loc.hora.toHour() + ' hrs.');
 			};
 
 			Object.defineProperty($scope, 'horarios', {
