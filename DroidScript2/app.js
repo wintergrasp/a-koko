@@ -104,8 +104,8 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				return $db.tipos.get(__selected.tipo).text + ' | ' + $db.dias.get(__selected.dia).text;
 			};
 
-			$scope.showRecorridoInfo = function (loc) {
-				app.Alert('Pasa por "' + loc.localidad + '": ' + loc.hora.toHour() + ' hrs.');
+			$scope.showRecorridoInfo = function (recorrido) {
+				app.Alert('Pasa por: ' + recorrido.localidad + '\nHora: ' + recorrido.hora.toHour() + '\nTipo: ' + recorrido.tipo);
 			};
 
 			Object.defineProperty($scope, 'horarios', {

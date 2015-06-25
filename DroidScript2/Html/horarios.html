@@ -4,9 +4,9 @@
 		<li ng-repeat="hr in horarios" ng-class="{'collection-item': true, 'active': hr.active}">
 			<span class="title"><b>{{hr.hora.toHour()}}</b> {{hr.localidad.text}}</span>
 			<br />
-			<span ng-repeat="loc in hr.recorrido" ng-click="showRecorridoInfo(loc)">
+			<span ng-repeat="rr in hr.recorrido" ng-click="showRecorridoInfo(rr)">
 				&gt;
-				<i>{{loc.localidad}}</i>
+				<i>{{rr.localidad}}</i>
 			</span>
 		</li>
 	</ul>

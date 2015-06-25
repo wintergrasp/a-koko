@@ -147,7 +147,7 @@ var horariosUtils = {
 			fl, tl, fi, ti, fh, th, i, rr;
 
 		$each($db.horarios, function (x, horario) {
-			if ((horario.dia === dia) && (horario.tipo === tipo)) {
+			if ((horario.dia === dia) && (($db.tipos.PRIMERO_QUE_PASA === tipo) || (horario.tipo === tipo))) {
 				fl = -1;
 				tl = -1;
 				fi = -1;
@@ -172,7 +172,8 @@ var horariosUtils = {
 						$each(horario.recorrido, function (rri, rrv) {
 							rr.push({
 								localidad: $db.localidades.get(rrv.localidad).text,
-								hora: rrv.hora
+								hora: rrv.hora,
+								tipo: $db.tipos.get(horario.tipo).text
 							});
 						});
 
