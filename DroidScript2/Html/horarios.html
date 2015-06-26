@@ -2,7 +2,11 @@
 	<h5 style="text-align: center">{{getTitulo()}}</h5>
 	<ul class="collection">
 		<li ng-repeat="hr in horarios" ng-class="{'collection-item': true, 'active': hr.active}">
-			<span class="title"><b>{{hr.hora.toHour()}}</b> {{hr.localidad.text}}</span>
+			<span class="title">
+				<b>{{hr.hora.toHour()}}</b>
+				{{hr.localidad.text}}
+				<i ng-show="isPrimeroQuePasa()">({{hr.tipo.text}})</i>
+			</span>
 			<br />
 			<span ng-repeat="rr in hr.recorrido" ng-click="showRecorridoInfo(rr)">
 				&gt;

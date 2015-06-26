@@ -131,6 +131,12 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				return $db.tipos.get(__selected.tipo).text + ' | ' + $db.dias.get(__selected.dia).text;
 			};
 
+			$scope.isPrimeroQuePasa = function () {
+				if (!__selected.isSelected)
+					return false;
+				return __selected.tipo === $db.tipos.PRIMERO_QUE_PASA;
+			}
+
 			$scope.showRecorridoInfo = function (recorrido) {
 				app.Alert('Pasa por: ' + recorrido.localidad + '\nHora: ' + recorrido.hora.toHour() + '\nTipo: ' + recorrido.tipo);
 			};

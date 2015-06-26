@@ -40,16 +40,24 @@ $db.horarios = [
 		tipo: 2,
 		recorrido: [
 			{
+				localidad: 1,
+				hora: 13.00
+			},
+			{
+				localidad: 2,
+				hora: 14.00
+			},
+			{
 				localidad: 3,
-				hora: 10.00
+				hora: 15.3
 			},
 			{
 				localidad: 4,
-				hora: 11.00
+				hora: 16.45
 			},
 			{
 				localidad: 5,
-				hora: 12.00
+				hora: 17.55
 			}
 		]
 	}
