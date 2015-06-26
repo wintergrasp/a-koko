@@ -12,13 +12,34 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		.module('akoko', [])
 
 		.controller('MainController', ['$scope', function ($scope) {
+			var aboutMenu = {
+				  key: 'about'
+				, icon: 'mdi-action-info-outline'
+				, text: 'Acerca de'
+			};
+
 			$scope.menuOptions = [
-				  { key: 'form',		icon: 'mdi-action-search',			text: 'Buscar' }
-				, { key: 'horarios',	icon: 'mdi-device-access-time',		text: 'Horarios' }
-				, { key: 'about',		icon: 'mdi-action-info-outline',	text: 'Acerca de' }
+				  {
+					  key: 'form'
+					, icon: 'mdi-action-search'
+					, text: 'Buscar'
+				  }
+				, {
+					  key: 'horarios'
+					, icon: 'mdi-device-access-time'
+					, text: 'Horarios'
+				  }
 			];
 
-			if (!app.isHtml) {
+			if (app.isHtml) {
+				$scope.menuOptions.push({
+					  key: 'playStore'
+					, icon: 'mdi-action-android'
+					, text: 'Google Play'
+				});
+				$scope.menuOptions.push(aboutMenu);
+			} else {
+				$scope.menuOptions.push(aboutMenu);
 				$scope.menuOptions.push({
 					  key: 'exit'
 					, icon: 'mdi-action-exit-to-app'
@@ -33,11 +54,17 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			};
 
 			$scope.setPage = function (x) {
-				if (x === 'exit') {
-					app.Exit();
-				} else {
-					$scope.currentPage = x;
-					$scope.hideNav();
+				switch (x) {
+					case 'exit':
+						app.Exit();
+						break;
+					case 'playStore':
+						window.open($cfg.playStore);
+						break;
+					default:
+						$scope.currentPage = x;
+						$scope.hideNav();
+						break;
 				}
 			};
 
@@ -116,6 +143,9 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 		.controller('AboutController', ['$scope', function ($scope) {
 			var version = 'v' + app.GetVersion()
+				message = 'OS: ' + app.GetOSVersion() + '. Model: ' +  app.GetModel() +
+					'\n\nEduardo:\n\t';
+
 			$scope.txtVersion = version;
 			$scope.txtEmail = $cfg.email;
 
@@ -123,9 +153,14 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				app.SendMail(
 					$cfg.email, // e-Mail
 					"Consulta a-KoKo (" + version + ")", // Title
-					"Eduardo:\n\t"//, // Message
+					message//, // Message
 					//file // File
 				);
+			};
+
+			$scope.doShare = function () {
+				app.ShowPopup('El Link se ha copiado al portapapeles');
+				app.SetClipboardText($cfg.webApp);
 			};
 		}])
 	;

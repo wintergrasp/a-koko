@@ -49,6 +49,14 @@ if (this.app) {
 		, LoadNumber: function (k, def) {
 			return parseInt(app.LoadText(k, def), 10);
 		}
+
+		, GetOSVersion: function () {
+			return navigator.appVersion;
+		}
+
+		, GetModel: function () {
+			return navigator.userAgent;
+		}
 	};
 }
 
