@@ -68,15 +68,10 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				});
 			}
 
-			$scope.currentPage = $scope.menuOptions[0].key;
+			//$scope.currentPage = $scope.menuOptions[0].key;
 
 			$scope.hideNav = function () {
 				$('.button-collapse').sideNav('hide');
-			};
-
-			$scope.goToPage = function (x) {
-				$scope.currentPage = x;
-				window.location = '#/' + x;
 			};
 
 			$scope.setPage = function (x) {
@@ -88,14 +83,16 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 						window.open($cfg.playStore);
 						break;
 					default:
-						$scope.currentPage = x;
+						window.location = '#/' + x;
+						//$scope.currentPage = x;
 						//$scope.hideNav();
 						break;
 				}
 			};
 
 			$scope.isPage = function (x) {
-				return $scope.currentPage === x;
+				//return $scope.currentPage === x;
+				return $location.path() === '/' + x;
 			};
 
 			$scope.isPageVisible = function (x) {
@@ -144,7 +141,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 					if (__horarios.length > 0) {
 						__selected.isSelected = true;
-						$scope.$parent.goToPage('horarios');
+						$scope.$parent.setPage('horarios');
 					}
 				}
 			};
