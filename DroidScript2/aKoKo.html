@@ -15,6 +15,7 @@
 		<script src="js/canvg.js"
 		<script src="js/modernizr.js"></script>
 		<script src="js/angular.min.js"></script>
+		<script src="js/angular-route.js"></script>
 
 		<!-- DroidScript -->
 		<script src='file:///android_asset/app.js'></script>
@@ -30,18 +31,18 @@
 		<script src="db.tipos.js"></script>
 		<script src="db.horarios.js"></script>
 	</head>
-	<body class="scrollspy" id="MainController" ng-controller="MainController">
+	<body class="scrollspy" id="MainController" ng-controller="MainController" on>
 		<!--Navigation-->
 		<div class="navbar-fixed">
 			<nav class="default_color" role="navigation">
 				<div class="container">
 					<div class="nav-wrapper">
-						<a id="logo-container" href="#!" class="brand-logo">A-KoKo</a>
-						<a id="main-menu" href="#!" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+						<a id="logo-container" href="javascript:void(0)" class="brand-logo">A-KoKo</a>
+						<a id="main-menu" href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 						<!-- Menu Desktop -->
 						<ul class="right hide-on-med-and-down">
 							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}" ng-show="isPageVisible(menu.key)">
-								<a href="#!" ng-click="setPage(menu.key)">
+								<a href="#{{menu.key}}" ng-click="setPage(menu.key)">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
 								</a>
@@ -50,7 +51,7 @@
 						<!-- Menu Mobile -->
 						<ul id="nav-mobile" class="right side-nav">
 							<li ng-repeat="menu in menuOptions" ng-class="{active: isPage(menu.key)}" ng-show="isPageVisible(menu.key)">
-								<a href="#!" ng-click="setPage(menu.key)" id="menu-item-{{menu.key}}">
+								<a href="#{{menu.key}}" ng-click="setPage(menu.key)" id="menu-item-{{menu.key}}">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
 								</a>
@@ -61,9 +62,7 @@
 			</nav>
 		</div>
 
-		<div class="section scrollspy" ng-show="isPage('form')" ng-include="'Html/form.html'"></div>
-		<div class="section scrollspy" ng-show="isPage('horarios')" ng-include="'Html/horarios.html'"></div>
-		<div class="section scrollspy" ng-show="isPage('about')" ng-include="'Html/about.html'"></div>
+		<div class="section scrollspy" ng-view></div>
 
 		<!-- Scripts -->
 		<script src="js/jquery.min.js"></script>

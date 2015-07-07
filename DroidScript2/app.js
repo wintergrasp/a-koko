@@ -9,9 +9,28 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		__horarios = [];
 
 	angular
-		.module('akoko', [])
+		.module('akoko', ['ngRoute'])
 
-		.controller('MainController', ['$scope', function ($scope) {
+		.config(['$routeProvider', function($routeProvider) {
+			$routeProvider
+				.when('/form', {
+					templateUrl	: 'Html/form.html',
+					controller 	: 'MainController'
+				})
+				.when('/horarios', {
+					templateUrl : 'Html/horarios.html',
+					controller 	: 'HorariosController'
+				})
+				.when('/about', {
+					templateUrl : 'Html/about.html',
+					controller 	: 'AboutController'
+				})
+				.otherwise({
+					redirectTo: '/form'
+				});
+		}])
+
+		.controller('MainController', ['$scope', '$rootScope', function ($scope, $rootScope) {
 			var aboutMenu = {
 				  key: 'about'
 				, icon: 'mdi-action-info-outline'
@@ -63,7 +82,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 						break;
 					default:
 						$scope.currentPage = x;
-						$scope.hideNav();
+						//$scope.hideNav();
 						break;
 				}
 			};
@@ -80,9 +99,9 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				}
 			};
 
-			$(function () {
-				$('.button-collapse').sideNav();
-			})
+			$rootScope.$on("$routeChangeSuccess", function (event, current, previous) { 
+				$scope.hideNav();
+			});
 		}])
 
 		.controller('FormController', ['$scope', function ($scope) {
@@ -171,3 +190,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		}])
 	;
 })();
+
+$(function () {
+	$('.button-collapse').sideNav();
+});
