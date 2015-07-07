@@ -30,12 +30,14 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				});
 		}])
 
-		.controller('MainController', ['$scope', '$rootScope', function ($scope, $rootScope) {
+		.controller('MainController', ['$scope', '$rootScope', '$location', function ($scope, $rootScope, $location) {
 			var aboutMenu = {
 				  key: 'about'
 				, icon: 'mdi-action-info-outline'
 				, text: 'Acerca de'
 			};
+
+			$scope.$location = $location;
 
 			$scope.menuOptions = [
 				  {
@@ -70,6 +72,11 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 			$scope.hideNav = function () {
 				$('.button-collapse').sideNav('hide');
+			};
+
+			$scope.goToPage = function (x) {
+				$scope.currentPage = x;
+				window.location = '#/' + x;
 			};
 
 			$scope.setPage = function (x) {
@@ -137,7 +144,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 					if (__horarios.length > 0) {
 						__selected.isSelected = true;
-						$scope.$parent.setPage('horarios');
+						$scope.$parent.goToPage('horarios');
 					}
 				}
 			};
