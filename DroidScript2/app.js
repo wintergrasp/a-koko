@@ -183,8 +183,12 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			};
 
 			$scope.doShare = function () {
-				app.ShowPopup('El Link se ha copiado al portapapeles');
-				app.SetClipboardText($cfg.webApp);
+				if (app.isHtml) {
+					window.open($cfg.webApp);
+				} else {
+					app.ShowPopup('El Link se ha copiado al portapapeles');
+					app.SetClipboardText($cfg.webApp);
+				}
 			};
 		}])
 	;

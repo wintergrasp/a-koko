@@ -69,10 +69,10 @@ function OnBack() {
 		if (Menu.isVisible()) {
 			Menu();
 		} else {
-			if (scope.isPage('form')) {
+			if (scope.isPage('')) {
 				app.Exit();
 			} else {
-				scope.setPage('form');
+				scope.setPage('');
 			}
 		}
 	});

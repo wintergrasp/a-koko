@@ -41,8 +41,12 @@
 						<a id="main-menu" href="#/" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
 						<!-- Menu Desktop -->
 						<ul class="right hide-on-med-and-down">
-							<li ng-repeat="menu in menuOptions" ng-class="{active: $location.path() === '/'+menu.key}" ng-show="isPageVisible(menu.key)">
-								<a href="#{{menu.key}}" ng-click="setPage(menu.key)">
+							<li
+								ng-repeat="menu in menuOptions"
+								ng-click="setPage(menu.key)"
+								ng-class="{active: $location.path() === '/'+menu.key}"
+								ng-show="isPageVisible(menu.key)">
+								<a href="#/{{menu.key}}">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
 								</a>
@@ -50,8 +54,12 @@
 						</ul>
 						<!-- Menu Mobile -->
 						<ul id="nav-mobile" class="right side-nav">
-							<li ng-repeat="menu in menuOptions" ng-class="{active: $location.path() === '/'+menu.key}" ng-show="isPageVisible(menu.key)">
-								<a href="#{{menu.key}}" ng-click="setPage(menu.key)" id="menu-item-{{menu.key}}">
+							<li
+								ng-repeat="menu in menuOptions"
+								ng-click="setPage(menu.key)"
+								ng-class="{active: $location.path() === '/'+menu.key}"
+								ng-show="isPageVisible(menu.key)">
+								<a href="#/{{menu.key}}" id="menu-item-{{menu.key}}">
 									<i class="{{menu.icon}} left"></i>
 									{{menu.text}}
 								</a>
