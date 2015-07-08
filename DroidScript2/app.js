@@ -13,7 +13,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 		.config(['$routeProvider', function($routeProvider) {
 			$routeProvider
-				.when('/form', {
+				.when('/', {
 					templateUrl	: 'Html/form.html',
 					controller 	: 'MainController'
 				})
@@ -26,7 +26,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 					controller 	: 'AboutController'
 				})
 				.otherwise({
-					redirectTo: '/form'
+					redirectTo: '/'
 				});
 		}])
 
@@ -41,7 +41,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 			$scope.menuOptions = [
 				  {
-					  key: 'form'
+					  key: ''
 					, icon: 'mdi-action-search'
 					, text: 'Buscar'
 				  }
@@ -68,8 +68,6 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				});
 			}
 
-			//$scope.currentPage = $scope.menuOptions[0].key;
-
 			$scope.hideNav = function () {
 				$('.button-collapse').sideNav('hide');
 			};
@@ -84,14 +82,11 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 						break;
 					default:
 						window.location = '#/' + x;
-						//$scope.currentPage = x;
-						//$scope.hideNav();
 						break;
 				}
 			};
 
 			$scope.isPage = function (x) {
-				//return $scope.currentPage === x;
 				return $location.path() === '/' + x;
 			};
 
