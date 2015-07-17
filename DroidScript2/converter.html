@@ -1,0 +1,193 @@
+<html>
+	<head>
+		<title>Converter</title>
+		<script src="utils.js"></script>
+		<script src="db.js"></script>
+		<script src="db.dias.js"></script>
+		<script src="db.localidades.js"></script>
+		<script src="db.tipos.js"></script>
+	</head>
+	<body>
+		<pre id="dbStr"></pre>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript">
+			// DB
+			var db = [];
+
+			var CNT = {
+				REF: 'ref.',
+				CIPO: 3,
+				ALEM: 4
+			};
+
+			function getLocalidad(txt) {
+				var l = null;
+				txt = txt.toLowerCase();
+
+				$($db.localidades).each(function () {
+					var localidad = this;
+
+					$(localidad.convert).each(function () {
+						if (txt.indexOf(this) > -1) {
+							l = localidad;
+							return false;
+						}
+					});
+
+					if (l)
+						return false;
+				});
+
+				return l;
+			}
+
+			function getHora(txt) {
+				if (/^\d+[:.,;]\d+$/.test(txt)) {
+					var p = txt.split(/[:.,;]/);
+					return {
+						hh: parseInt(p[0].trim(), 10),
+						mm: parseInt(p[1].trim(), 10)
+					};
+				}
+
+				return null;
+			}
+
+			function hrToFloat(hr) {
+				var h = hr.hh.toString(),
+					m = hr.mm.toString();
+				if (hr.mm < 10) m = '0' + m;
+				return parseFloat(h + '.' + m);
+			}
+
+			function proccess(tipo, dia, table) {
+				var thead = table.shift(),
+					hasRef = (thead[0].toLowerCase() === CNT.REF);
+
+				if (hasRef)
+					thead.shift();
+
+				//Ref.	Neuquén	Cipolletti	Fdez. Oro	Allen	hospital	Bª Sta Catalina
+				for (var i = 0; i < thead.length; i++) {
+					thead[i] = getLocalidad(thead[i]);
+				}
+
+				$(table).each(function () {
+					var tr = this,
+						ref = hasRef ? tr.shift().toLowerCase() : null,
+						rr = [],
+						locPrev = {};
+					/*
+					rr = [
+						{
+							localidad: 1,
+							hora: 8.30
+						},
+						{
+							localidad: 2,
+							hora: 9.00
+						},
+						{
+							localidad: 3,
+							hora: 10.45
+						}
+					];
+					*/
+
+					for (var i = 0; i < thead.length; i++) {
+						var hr = getHora(tr[i]);
+
+						if (hr) {
+							var th = thead[i];
+
+							if (hasRef && (ref === 'a') && (locPrev.order < th.order) && (locPrev.id == CNT.CIPO)) {
+								// Alem
+								if (hr.mm < 55) {
+									hr.mm += 5;
+								} else {
+									hr.hh = (hr.hh == 23) ? 0 : (hr.hh + 1);
+									hr.mm = hr.mm + 5 - 60;
+								}
+
+								rr.push({
+									localidad: CNT.ALEM,
+									hora: hrToFloat(hr)
+								});
+							}
+
+							rr.push({
+								localidad: th.id,
+								hora: hrToFloat(hr)
+							});
+
+							if (hasRef && (ref === 'a') && (locPrev.order > th.order) && (th.id == CNT.CIPO)) {
+								// Alem
+								if (hr.mm >= 5) {
+									hr.mm -= 5;
+								} else {
+									hr.hh = (hr.hh == 0) ? 23 : (hr.hh - 1);
+									hr.mm = hr.mm - 5 + 60;
+								}
+
+								rr.push({
+									localidad: CNT.ALEM,
+									hora: hrToFloat(hr)
+								});
+							}
+
+							locPrev = th;
+						}
+					}
+
+					db.push({
+						dia: dia.id,
+						tipo: tipo.id,
+						recorrido: rr
+					});
+				});
+			}
+
+			function parse(tipo, dia, str) {
+				var table = [],
+					tr;
+
+				$(str.split('[---]')).each(function () {
+					$(this.split(/[\n\r]/g)).each(function () {
+						tr = $.trim(this);
+						if (tr) {
+							table.push(this.split(/\t/g));
+						}
+					});
+				});
+
+				proccess(tipo, dia, table);
+			}
+
+			function load(tipo, dia) {
+				$.ajax({
+					url: './converter/' + tipo.file + '-' + dia.file + '.txt',
+					async: false,
+					success: function (data) {
+						parse(tipo, dia, data);
+					}
+				});
+			}
+
+			function show() { $('#dbStr').text('$db.horarios = ' + JSON.stringify(db, null, '\t') + ';'); }
+
+			$(function () {
+				$($db.tipos).each(function () {
+					var tipo = this;
+					if (tipo.file) {
+						$($db.dias).each(function () {
+							var dia = this;
+							load(tipo, dia);
+						});
+					}
+				});
+
+				show();
+			});
+		</script>
+	</body>
+</html>
