@@ -8,13 +8,8 @@
 				<option value="" disabled selected>Desde...</option>
 			</select>
 		</div>
-		<div class="col s3">
-			<label>&nbsp;</label>
-			<button class="btn waves-effect waves-light blue darken-1" type="button" name="invertir"
-				ng-click="shuffle()">
-				<i class="mdi-av-shuffle"></i>
-			</button>
-		</div>
+		<div class="col s3"></div>
+
 		<div class="col s9">
 			<label>Hasta</label>
 			<select ng-model="formData.hasta"
@@ -23,6 +18,13 @@
 				<option value="" disabled selected>Hasta...</option>
 			</select>
 		</div>
+		<div class="col s3">
+			<button class="btn waves-effect waves-light blue darken-1" type="button" name="invertir"
+				ng-click="shuffle()">
+				<i class="mdi-av-shuffle"></i>
+			</button>
+		</div>
+
 		<div class="col s12">
 			<label>Día</label>
 			<select ng-model="formData.dia"
@@ -30,6 +32,7 @@
 				class="browser-default" required>
 			</select>
 		</div>
+
 		<div class="col s12">
 			<label>Tipo</label>
 			<select ng-model="formData.tipo"

@@ -50,7 +50,7 @@
 							});
 						}
 					} else {
-						this.sortBy(col.asc);
+						this.sortBy(col.asc());
 					}
 				}
 
@@ -194,7 +194,6 @@ var horariosUtils = {
 			}
 		});
 
-		debugger;
 		if (data.length > 0)
 			data.sortBy('hora');
 

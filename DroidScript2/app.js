@@ -149,6 +149,9 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		}])
 
 		.controller('HorariosController', ['$scope', function ($scope) {
+			if (!__selected.isSelected)
+				window.location.href = '#/';
+
 			$scope.getTitulo = function () {
 				if (!__selected.isSelected)
 					return '';
