@@ -276,3 +276,10 @@ body {
 #logo-container {
 	white-space: nowrap;
 }
+
+.hora-sep {
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #3333FF;
+	font-family: monospace;
+}

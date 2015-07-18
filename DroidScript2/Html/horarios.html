@@ -6,11 +6,16 @@
 				<b>{{hr.hora.toHour()}}</b>
 				{{hr.localidad.text}}
 				<i ng-show="isPrimeroQuePasa()">({{hr.tipo.text}})</i>
+				<b class="hora-sep">&gt;</b>
+				<b>{{hr.destino.hora.toHour()}}</b>
+				{{hr.destino.localidad.text}}
 			</span>
 			<br />
-			<span ng-repeat="rr in hr.recorrido" ng-click="showRecorridoInfo(rr)">
+			<span ng-repeat="rr in hr.recorrido">
 				&gt;
-				<i>{{rr.localidad}}</i>
+				<a href="javascript:void(0)" ng-click="showRecorridoInfo(rr)">
+					<i>{{rr.localidad}}</i>
+				</a>
 			</span>
 		</li>
 	</ul>

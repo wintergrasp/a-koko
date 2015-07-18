@@ -149,8 +149,10 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		}])
 
 		.controller('HorariosController', ['$scope', function ($scope) {
-			if (!__selected.isSelected)
+			if (!__selected.isSelected) {
 				window.location.href = '#/';
+				return;
+			}
 
 			$scope.getTitulo = function () {
 				if (!__selected.isSelected)
@@ -165,13 +167,14 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			}
 
 			$scope.showRecorridoInfo = function (recorrido) {
-				app.Alert('Pasa por: ' + recorrido.localidad + '\nHora: ' + recorrido.hora.toHour() + '\nTipo: ' + recorrido.tipo);
+				app.ShowPopup('Pasa por: ' + recorrido.localidad + ' | Hora: ' + recorrido.hora.toHour() + ' | Tipo: ' + recorrido.tipo);
 			};
 
-			Object.defineProperty($scope, 'horarios', {
-				get: function () { return __horarios; },
-				set: function (v) { __horarios = v; }
-			});
+			// Object.defineProperty($scope, 'horarios', {
+			// 	get: function () { return __horarios; },
+			// 	set: function (v) { __horarios = v; }
+			// });
+			$scope.horarios = __horarios;
 		}])
 
 		.controller('AboutController', ['$scope', function ($scope) {

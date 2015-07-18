@@ -145,7 +145,8 @@ var horariosUtils = {
 	buscarHorarios: function (desde, hasta, dia, tipo) {
 		var data = [],
 			pqp = ($db.tipos.PRIMERO_QUE_PASA === tipo),
-			fl, tl, fi, ti, fh, th, i, rr;
+			localidadHasta = $db.localidades.get(hasta),
+			fl, tl, fi, ti, fh, th, i, rr, hh;
 
 		$each($db.horarios, function (x, horario) {
 			if ((horario.dia === dia) && (pqp || (horario.tipo === tipo))) {
@@ -164,7 +165,7 @@ var horariosUtils = {
 
 					if (hasta === recorrido.localidad) {
 						tl = hasta;
-						th = recorrido.hora;
+						hh = th = recorrido.hora;
 						ti = i;
 					}
 
@@ -183,6 +184,10 @@ var horariosUtils = {
 							localidad: $db.localidades.get(fl),
 							active: false,
 							recorrido: rr,
+							destino: {
+								hora: hh,
+								localidad: localidadHasta
+							},
 							tipo: $db.tipos.get(horario.tipo)
 						});
 
