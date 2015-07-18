@@ -6,6 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
 		<meta name="theme-color" content="#FFFFFF">
 		<title>A-KoKo: Horarios</title>
+		<script type="text/javascript">
+			window.onerror = function () {
+				console.log('Error!', arguments);
+			};
+		</script>
 		<!-- CSS  -->
 		<link href="css/materialize.css" type="text/css" rel="stylesheet">
 		<link href="css/style.css" type="text/css" rel="stylesheet" >
@@ -31,7 +36,7 @@
 		<script src="db.tipos.js"></script>
 		<script src="db.horarios.js"></script>
 	</head>
-	<body class="scrollspy" id="MainController" ng-controller="MainController" on>
+	<body class="scrollspy" id="MainController" ng-controller="MainController">
 		<!--Navigation-->
 		<div class="navbar-fixed">
 			<nav class="default_color" role="navigation">
