@@ -24,7 +24,6 @@ if (this.app) {
 		, Alert: function (m, t) {
 			if (t) m = t + '\n\t' + m;
 			alert(m);
-			Materialize.toast(m, 4000);
 		}
 
 		, ShowPopup: function (m) {
