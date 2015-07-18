@@ -194,6 +194,7 @@ var horariosUtils = {
 			}
 		});
 
+		debugger;
 		if (data.length > 0)
 			data.sortBy('hora');
 

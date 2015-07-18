@@ -15,7 +15,8 @@
 			var db = [];
 
 			var CNT = {
-				REF: 'ref.',
+				REF: ['ref.', 'ref'],
+				REF_ALEM: 'a',
 				CIPO: 3,
 				ALEM: 4
 			};
@@ -62,7 +63,7 @@
 
 			function proccess(tipo, dia, table) {
 				var thead = table.shift(),
-					hasRef = (thead[0].toLowerCase() === CNT.REF);
+					hasRef = (CNT.REF.indexOf(thead[0].toLowerCase()) > -1);
 
 				if (hasRef)
 					thead.shift();
@@ -94,73 +95,74 @@
 					];
 					*/
 
-					for (var i = 0; i < thead.length; i++) {
-						var hr = getHora(tr[i]);
+					if (tr.length > 1) {
+						for (var i = 0; i < thead.length; i++) {
+							var hr = getHora(tr[i]);
 
-						if (hr) {
-							var th = thead[i];
+							if (hr) {
+								var th = thead[i];
 
-							if (hasRef && (ref === 'a') && (locPrev.order < th.order) && (locPrev.id == CNT.CIPO)) {
-								// Alem
-								if (hr.mm < 55) {
-									hr.mm += 5;
-								} else {
-									hr.hh = (hr.hh == 23) ? 0 : (hr.hh + 1);
-									hr.mm = hr.mm + 5 - 60;
+								if (hasRef && (ref === CNT.REF_ALEM) && (locPrev.order < th.order) && (locPrev.id == CNT.CIPO)) {
+									// Alem
+									if (hr.mm < 55) {
+										hr.mm += 5;
+									} else {
+										hr.hh = (hr.hh == 23) ? 0 : (hr.hh + 1);
+										hr.mm = hr.mm + 5 - 60;
+									}
+
+									rr.push({
+										localidad: CNT.ALEM,
+										hora: hrToFloat(hr)
+									});
 								}
 
 								rr.push({
-									localidad: CNT.ALEM,
+									localidad: th.id,
 									hora: hrToFloat(hr)
 								});
-							}
 
-							rr.push({
-								localidad: th.id,
-								hora: hrToFloat(hr)
-							});
+								if (hasRef && (ref === CNT.REF_ALEM) && (locPrev.order > th.order) && (th.id == CNT.CIPO)) {
+									// Alem
+									if (hr.mm >= 5) {
+										hr.mm -= 5;
+									} else {
+										hr.hh = (hr.hh == 0) ? 23 : (hr.hh - 1);
+										hr.mm = hr.mm - 5 + 60;
+									}
 
-							if (hasRef && (ref === 'a') && (locPrev.order > th.order) && (th.id == CNT.CIPO)) {
-								// Alem
-								if (hr.mm >= 5) {
-									hr.mm -= 5;
-								} else {
-									hr.hh = (hr.hh == 0) ? 23 : (hr.hh - 1);
-									hr.mm = hr.mm - 5 + 60;
+									rr.push({
+										localidad: CNT.ALEM,
+										hora: hrToFloat(hr)
+									});
 								}
 
-								rr.push({
-									localidad: CNT.ALEM,
-									hora: hrToFloat(hr)
-								});
+								locPrev = th;
 							}
-
-							locPrev = th;
 						}
-					}
 
-					db.push({
-						dia: dia.id,
-						tipo: tipo.id,
-						recorrido: rr
-					});
+						db.push({
+							dia: dia.id,
+							tipo: tipo.id,
+							recorrido: rr
+						});
+					}
 				});
 			}
 
 			function parse(tipo, dia, str) {
-				var table = [],
-					tr;
+				var table, tr;
 
 				$(str.split('[---]')).each(function () {
+					table = [];
 					$(this.split(/[\n\r]/g)).each(function () {
 						tr = $.trim(this);
 						if (tr) {
 							table.push(this.split(/\t/g));
 						}
 					});
+					proccess(tipo, dia, table);
 				});
-
-				proccess(tipo, dia, table);
 			}
 
 			function load(tipo, dia) {
@@ -185,6 +187,17 @@
 						});
 					}
 				});
+				/*
+				$([{ id: 2, text: 'Comun', file: 'comun' }]).each(function () {
+					var tipo = this;
+					if (tipo.file) {
+						$([{ id: 3, text: 'Domingos y Feriados', file: 'df' }]).each(function () {
+							var dia = this;
+							load(tipo, dia);
+						});
+					}
+				});
+				*/
 
 				show();
 			});

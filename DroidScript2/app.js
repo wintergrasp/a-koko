@@ -140,6 +140,12 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 					}
 				}
 			};
+
+			$scope.shuffle = function () {
+				var tmp = $scope.formData.desde;
+				$scope.formData.desde = $scope.formData.hasta;
+				$scope.formData.hasta = tmp;
+			};
 		}])
 
 		.controller('HorariosController', ['$scope', function ($scope) {
