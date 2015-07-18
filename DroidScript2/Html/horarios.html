@@ -11,7 +11,7 @@
 				{{hr.destino.localidad.text}}
 			</span>
 			<br />
-			<span ng-repeat="rr in hr.recorrido" on-finish-render="ngRepeatFinished">
+			<span ng-repeat="rr in hr.recorrido">
 				&gt;
 				<a href="javascript:void(0)" ng-click="showRecorridoInfo(rr)">
 					<i>{{rr.localidad}}</i>

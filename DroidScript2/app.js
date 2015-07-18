@@ -174,9 +174,9 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				app.ShowPopup('Pasa por: ' + recorrido.localidad + ' | Hora: ' + recorrido.hora.toHour() + ' | Tipo: ' + recorrido.tipo);
 			};
 
-			$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+			setTimeout(function () {
 				app.HideProgressBar();
-			});
+			}, 10);
 
 			// Object.defineProperty($scope, 'horarios', {
 			// 	get: function () { return __horarios; },
@@ -184,19 +184,6 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			// });
 			$scope.horarios = __horarios;
 		}])
-
-		.directive('onFinishRender', function ($timeout) {
-			return {
-				restrict: 'A',
-				link: function (scope, element, attr) {
-					if (scope.$last === true) {
-						$timeout(function () {
-							scope.$emit('ngRepeatFinished');
-						});
-					}
-				}
-			}
-		})
 
 		.controller('AboutController', ['$scope', function ($scope) {
 			var version = 'v' + app.GetVersion()
