@@ -57,7 +57,11 @@ if (this.app) {
 
 		, GetModel: function () {
 			return navigator.userAgent;
-		}
+		},
+
+		ShowProgressBar: function (p) { },
+		UpdateProgressBar: function (p) { },
+		HideProgressBar: function () { }
 	};
 }
 

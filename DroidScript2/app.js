@@ -131,12 +131,16 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 					app.SaveNumber("Form_dia", __selected.dia);
 					app.SaveNumber('Form_tipo', __selected.tipo);
 
+					app.ShowProgressBar("Buscando...", 0);
 					var hrs = horariosUtils.buscarHorarios(__selected.desde, __selected.hasta, __selected.dia, __selected.tipo);
+					app.UpdateProgressBar(50);
 					__horarios = horariosUtils.prepararHorarios(hrs);
 
 					if (__horarios.length > 0) {
 						__selected.isSelected = true;
 						$scope.$parent.setPage('horarios');
+					} else {
+						app.HideProgressBar();
 					}
 				}
 			};
@@ -170,12 +174,29 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				app.ShowPopup('Pasa por: ' + recorrido.localidad + ' | Hora: ' + recorrido.hora.toHour() + ' | Tipo: ' + recorrido.tipo);
 			};
 
+			$scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+				app.HideProgressBar();
+			});
+
 			// Object.defineProperty($scope, 'horarios', {
 			// 	get: function () { return __horarios; },
 			// 	set: function (v) { __horarios = v; }
 			// });
 			$scope.horarios = __horarios;
 		}])
+
+		.directive('onFinishRender', function ($timeout) {
+			return {
+				restrict: 'A',
+				link: function (scope, element, attr) {
+					if (scope.$last === true) {
+						$timeout(function () {
+							scope.$emit('ngRepeatFinished');
+						});
+					}
+				}
+			}
+		})
 
 		.controller('AboutController', ['$scope', function ($scope) {
 			var version = 'v' + app.GetVersion()
