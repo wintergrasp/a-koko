@@ -288,3 +288,7 @@ body {
 	color: #3333FF;
 	font-family: monospace;
 }
+
+.collection .collection-item.active a {
+	color: #EEEEFF;
+}
