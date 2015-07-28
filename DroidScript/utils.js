@@ -1,196 +1,233 @@
 /** ********* **
- *  PROTOTYPE  * 
+ *  Prototype  *
  ** ********* **/
+(function () {
+	function SortMode(col, desc) {
+		if (this instanceof String.SortMode) {
+			this.value = col.valueOf(col);
+			this.desc = desc;
+			this.asc = !desc;
 
-String.prototype.toHour = function () {
-	var x = this.replace('.', ':')
-		.replace(/^(\d+)$/, '$1:00')
-		.replace(/:(\d)$/, ':$10');
-	if (x.length === 4)
-		x = '0' + x;
-	return x;
-};
-
-Number.prototype.toHour = function () {
-	return (this + '').toHour();
-};
-
-$$.Utils = {
-	DetailIsVisible: function () {
-		return _layDetailVisible;
-	},
-	
-	AboutIsVisible: function () {
-		return _layAboutVisible;
-	},
-	
-	Locations: {
-		/**
-		 * lst: {
-		 *  7.10: 0,
-		 *  7.25: 1,
-		 *  7.35: 2,
-		 *  7.50: 3
-		 * }
-		 */
-		ListToString: function (lst) {
-			var i, s = '';
-			for (i in lst) if (lst.hasOwnProperty(i)) {
-				if (s) s += ' - ';
-				s += CFG.data.loc[lst[i]];
-			}
-			return s;
+			this.toString = function () { return this.value; };
+		} else {
+			return new String.SortMode(col, desc);
 		}
-	},
-	
-	Hour: {
-		ToString: function (/*array*/h) {
-			return h.join(',').replace(/\./g, ':')
-				.replace(/^(\d+),/, '$1:00,')
-				.replace(/:(\d)$/, ':$10')
-				.replace(/,(\d)$/, ',$1:00')
-				.replace(/,(\d{2})$/g, ',$1:00')
-				.replace(/:(\d),/g, ':$10,')
-				.replace(/,(\d),/, ',$1:00,');
-		}
-	},
-	
-	List: {
-		Escape: function (txt) {
-			return ((txt || '') + '')
-				.replace(/:/g, '^c^')
-				.replace(/,/g, '? '); //NOTA: La "," es un caracter "especial", y hace que esta linea se rompa
-		},
-		
-		Set: function (lst, data) {
-			/*
-			data = [
-				{
-					// Required
-					title: 'Foo',
-					// Optional
-					body: 'Bar',
-					// Optional
-					extra: 'Extra...',
-					// Optional
-					icon: null|folder|audiofolder|photofolder|videofolder|audio|photo|video|playlist
-				},
-				...
-			]
-			*/
-			var s = '';
-			
-			if (data && data.length) {
-				for (var i in data) if (data.hasOwnProperty(i)) {
-					if (s) s += ',';
-					var d = data[i];
-					s += this.Escape(d.title || i);
-					if (d.body)
-						s += ':' + this.Escape(d.body);
-					if (d.extra)
-						s += ':' + this.Escape(d.extra);
-					s += ':' + (d.icon || 'null');
+	}
+
+	String.SortMode = SortMode;
+
+	Object.defineProperties(Array.prototype, {
+		contains: { value: function (x) { return this.indexOf(x) > -1; } },
+		sortBy: {
+			value: function (col) {
+				if (arguments.length > 1) {
+					var i;
+					for (i = arguments.length - 1; i >= 0; i--)
+						this.sortBy(arguments[i]);
+				} else {
+					if (typeof col === 'function')
+						col = col.apply(col);
+					if (col instanceof String.SortMode) {
+						if (col.desc) {
+							// DESC
+							col = col.value;
+							this.sort(function (a, b) {
+								if (a[col] < b[col])
+									return 1;
+								if (a[col] > b[col])
+									return -1;
+								return 0;
+							});
+						} else {
+							// ASC
+							col = col.value;
+							this.sort(function (a, b) {
+								if (a[col] < b[col])
+									return -1;
+								if (a[col] > b[col])
+									return 1;
+								return 0;
+							});
+						}
+					} else {
+						this.sortBy(col.asc());
+					}
 				}
+
+				return this;
 			}
-		 
-			//if (CFG.debug) app.ShowPopup(s);   
-			lst.SetList(s);
 		}
-	},
-	
-	Horario: {
-		Get: function (typeId, dayId) {
-			return include('horarios.' + typeId + '.' + dayId);
-		},
-		
-		Find: function (from, to, day, type) {
-			var data   = [],
-				fromId = CFG.data.GetLocID(from),
-				toId   = CFG.data.GetLocID(to),
-				dayId  = CFG.data.GetDayID(day),
-				typeId = CFG.data.GetTypeID(type),
-				hrs  = this.Get(typeId, dayId),
-				fl, tl, fi, ti, hr, hora, horas, locId, fh, th, i;
-			
-			hrs.each(function (hr, horas) {
+	});
+
+	Object.defineProperties(String.prototype, {
+		toHour: { value: function () {
+			var x = this.replace('.', ':')
+				.replace(/^(\d+)$/, '$1:00')
+				.replace(/:(\d)$/, ':$10');
+			if (x.length === 4)
+				x = '0' + x;
+			return x;
+		}},
+
+		// Repeat
+		repeat: { value: function (n) {
+			n = parseInt(n, 10);
+			if (isNaN(n) || n < 0)
+				return null;
+			return new Array(n + 1).join(this);
+		}},
+
+		// Contains
+		contains: { value: function (x) { return this.indexOf(x) > -1; }},
+
+		// Format String
+		format: { value: function () {
+			var s = this, i;
+			for (i = 0; i < arguments.length; i++)
+				s = s.replace("%" + i, arguments[i]);
+			return s;
+		}},
+
+		// Cut and add "..." to the end
+		cut: { value: function (max, end /*'...'*/) {
+			if (end)
+				end = end.toString().trim();
+			if (!end)
+				end = '...';
+			var l = end.length;
+			max = parseInt(max, 10);
+			if (isNaN(max) || (max < l))
+				max = 0;
+			var s = this.trim();
+			if (s === '')
+				return '';
+			if (max <= l)
+				return end;
+			max = max - l;
+			if (s.length <= max)
+				return s;
+			return s.substring(0, max).replace(/\s*$/, '') + end;
+		}},
+
+		// Sort & Order
+		desc: { value: function () { return String.SortMode(this, true); }},
+		asc: { value: function () { return String.SortMode(this, false); }}
+	});
+
+	Number.prototype.toHour = function () {
+		return (this + '').toHour();
+	};
+})();
+
+function $each(o, fn) {
+	if (typeof fn !== 'function')
+		return undefined; // Error
+	for (var i in o)
+		if (o.hasOwnProperty(i) && (fn.apply(o[i], [i, o[i]]) === false))
+			return false; // Break
+	return true; // All finish
+}
+
+var horariosUtils = {
+
+	/*return [
+		{
+			hora: 8.20,
+			localidad: { id: 1, text: 'Roca' },
+			active: false,
+			recorrido: [
+				{ id: 1, text: 'Roca' },
+				{ id: 2, text: 'Allen' },
+				{ id: 3, text: 'Nqn' }
+			]
+		}
+	];*/
+	buscarHorarios: function (desde, hasta, dia, tipo) {
+		var data = [],
+			pqp = ($db.tipos.PRIMERO_QUE_PASA === tipo),
+			localidadHasta = $db.localidades.get(hasta),
+			fl, tl, fi, ti, fh, th, i, rr, hh;
+
+		$each($db.horarios, function (x, horario) {
+			if ((horario.dia === dia) && (pqp || (horario.tipo === tipo))) {
 				fl = -1;
 				tl = -1;
 				fi = -1;
 				ti = -1;
 				i = 0;
-				
-				horas.each(function (hora, locId) {
-					if (fromId === locId) {
-						fl = fromId;
-						fh = parseFloat(hora);
+
+				$each(horario.recorrido, function (x, recorrido) {
+					if (desde === recorrido.localidad) {
+						fl = desde;
+						fh = recorrido.hora;
 						fi = i;
 					}
-					if (toId === locId) {
-						tl = toId;
-						th = parseFloat(hora);
+
+					if (hasta === recorrido.localidad) {
+						tl = hasta;
+						hh = th = recorrido.hora;
 						ti = i;
 					}
+
 					if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
-						// Fix BUG Fredy: No muestra horarios luego de las 00:00
-						//if (fh < th) { // From HRW < To HRS
-							data.push({
-								title: '%0 | %1'
-									.format(fh.toHour(), CFG.data.loc[fl]),
-								body: '%0 | %1'
-									.format(th.toHour(), CFG.data.loc[tl]),
-								extra: Utils.Locations.ListToString(horas)
+						rr = [];
+						$each(horario.recorrido, function (rri, rrv) {
+							rr.push({
+								localidad: $db.localidades.get(rrv.localidad).text,
+								hora: rrv.hora,
+								tipo: $db.tipos.get(horario.tipo).text
 							});
-						//}
+						});
+
+						data.push({
+							hora: fh,
+							localidad: $db.localidades.get(fl),
+							active: false,
+							recorrido: rr,
+							destino: {
+								hora: hh,
+								localidad: localidadHasta
+							},
+							tipo: $db.tipos.get(horario.tipo)
+						});
+
 						return false;
 					}
+
 					i++;
 				});
-			});
-			
-			data.sortBy('title');
-			
-			return data;
-		}
+			}
+		});
+
+		if (data.length > 0)
+			data.sortBy('hora');
+
+		return data;
 	},
-	
-	Controls: {
-		CreateTitle: function (str) {
-			var txt = app.CreateText(str);
-			txt.SetTextSize(CFG.app.style.title.size);
-			return txt;
-		},
-		
-		CreateLabel: function (str) {
-			var txt = app.CreateText(str, 0.3, null, "Right");
-			txt.SetTextSize(CFG.app.style.text.size);
-			return txt;
-		},
-		
-		CreateText: function (str, size, onTouch) {
-			var txt = app.CreateText(str, 0.9, null, "Left" );
-			txt.SetTextSize(size || CFG.app.style.text.size);
-			if (onTouch)
-				txt.SetOnTouch(onTouch);
-			return txt;
-		},
-		
-		CreateButton: function (str, onTouch) {
-			var btn = app.CreateButton(str, 0.8, 0.06);//, "gray");
-			btn.SetOnTouch(onTouch);
-			btn.SetTextSize(CFG.app.style.text.size);
-			return btn;
-		},
-		
-		CreateSpinner: function (key, data) {
-			var rows = data.join(',');
-			selected[key] = app.LoadText('Form_' + key, data[0]);
-			//selected[key] = data[0];
-			
-			var spin = app.CreateSpinner(rows, 0.8);
-			spin.SetTextSize(CFG.app.style.text.size);
-			spin.SelectItem(selected[key]);
-			//spin.SetBackColor('#555555');
-			return spin;
+
+	prepararHorarios: function (horarios) {
+		var h, x, d, y;
+
+		if (horarios.length === 0) {
+			app.Alert("No existen horarios para este recorrido");
+		} else {
+			d = new Date();
+			h = d.getHours() + (d.getMinutes() / 100);
+			x = 999;
+
+			$each(horarios, function (i, v) {
+				d = v.hora - h;
+				if (d < 0) d = (-1) * d;
+				if (d < x) {
+					x = d;
+					y = i;
+				}
+			});
+
+			horarios[y].active = true;
 		}
+
+		// Mostrar horarios
+		return horarios;
 	}
 };
