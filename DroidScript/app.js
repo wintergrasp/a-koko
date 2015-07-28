@@ -176,6 +176,10 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 			setTimeout(function () {
 				app.HideProgressBar();
+
+				$('html, body').animate({
+					scrollTop: $('.collection .active').offset().top
+				}, 1000);
 			}, 10);
 
 			// Object.defineProperty($scope, 'horarios', {
