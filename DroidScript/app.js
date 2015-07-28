@@ -131,7 +131,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 					app.SaveNumber("Form_dia", __selected.dia);
 					app.SaveNumber('Form_tipo', __selected.tipo);
 
-					app.ShowProgressBar("Buscando...", 0);
+					app.ShowProgressBar("Buscando... Por favor, espere...", 0);
 					var hrs = horariosUtils.buscarHorarios(__selected.desde, __selected.hasta, __selected.dia, __selected.tipo);
 					app.UpdateProgressBar(50);
 					__horarios = horariosUtils.prepararHorarios(hrs);

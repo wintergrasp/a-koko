@@ -59,9 +59,22 @@ if (this.app) {
 			return navigator.userAgent;
 		},
 
-		ShowProgressBar: function (p) { },
-		UpdateProgressBar: function (p) { },
-		HideProgressBar: function () { }
+		ShowProgressBar: function (msg, p) {
+			var m = $('#modalLoading');
+			m.find('p').text(msg);
+			m.find('.determinate').css('width', p + '%')
+			m.openModal({
+				dismissible: false
+			});
+		},
+
+		UpdateProgressBar: function (p) {
+			$('#modalLoading .determinate').css('width', p + '%');
+		},
+
+		HideProgressBar: function () {
+			$('#modalLoading').closeModal();
+		}
 	};
 }
 
