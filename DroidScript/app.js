@@ -206,12 +206,19 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				);
 			};
 
-			$scope.doShare = function () {
+			$scope.doOpenWeb = function () {
 				if (app.isHtml) {
 					window.open($cfg.webApp);
 				} else {
-					app.ShowPopup('El Link se ha copiado al portapapeles');
-					app.SetClipboardText($cfg.webApp);
+					app.OpenUrl($cfg.webApp);
+				}
+			};
+
+			$scope.doShare = function () {
+				if (app.isHtml) {
+					window.open($cfg.playStore);
+				} else {
+					app.OpenUrl($cfg.playStore);
 				}
 			};
 		}])

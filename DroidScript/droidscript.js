@@ -97,6 +97,5 @@ function OnBack() {
 }
 
 function OnMenu(item) {
-	//app.ShowPopup( item, "Short" );
 	Menu();
 }
