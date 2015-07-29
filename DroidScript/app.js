@@ -3,6 +3,28 @@ function Menu() { $('#main-menu').click(); }
 Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 (function () {
+	if (!app.isHtml && (app.LoadNumber('lastCheck', 1) || 0) < ((new Date()).getTime() - (24*60*60*1000))) {
+		var httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange = function() {
+			if (httpRequest.readyState == 4) {
+				if (httpRequest.status == 200) {
+					var result = parseFloat(httpRequest.responseText);
+
+					if (!isNaN(result) && (result > app.GetVersion())) {
+						if (confirm('Existe una nueva versión disponible!\nActualiza para disfrutar de las nuevas caracteristicas y los horarios vigentes.')) {
+							app.OpenUrl($cfg.playStore);
+						} else {
+							app.SaveNumber('lastCheck', (new Date()).getTime());
+						}
+					}
+				}
+			}
+		};
+
+		httpRequest.open("GET", $cfg.versionCheck, true);
+		httpRequest.send(null);
+	}
+
 	$db.__init();
 
 	var __selected = { isSelected: false },
@@ -207,19 +229,11 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			};
 
 			$scope.doOpenWeb = function () {
-				if (app.isHtml) {
-					window.open($cfg.webApp);
-				} else {
-					app.OpenUrl($cfg.webApp);
-				}
+				app.OpenUrl($cfg.webApp);
 			};
 
 			$scope.doShare = function () {
-				if (app.isHtml) {
-					window.open($cfg.playStore);
-				} else {
-					app.OpenUrl($cfg.playStore);
-				}
+				app.OpenUrl($cfg.playStore);
 			};
 		}])
 	;

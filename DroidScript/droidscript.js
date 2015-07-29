@@ -5,7 +5,7 @@ if (this.app) {
 		  isHtml: true
 
 		, GetVersion: function () {
-			return '2.0';
+			return '2.20';
 		}
 
 		, SendMail: function (email, subject, message, file) {
@@ -15,6 +15,10 @@ if (this.app) {
 				+ "?subject=" + escape(subject)
 				+ "&body=" + escape(message)
 			;
+		}
+
+		, OpenUrl: function (url) {
+			window.open(url);
 		}
 
 		, Exit: function () {
