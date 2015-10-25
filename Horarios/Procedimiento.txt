@@ -1,0 +1,11 @@
+1. Crear 2 copias del XLS de horarios: 1º para no perder el original, 2º para modificar y estandarizar.
+2. Por cada hoja:
+2.1. Horas eliminadas (texto blanco): Establecer fondo AMARILLO a las celdas que contienen horarios.
+2.2. Eliminar formulas: Copiar tabla de horarios y PEGAR VALORES nuevamente en la misma selección.
+2.3. Eliminar datos invalidos:
+2.3.1. Eliminar columnas inválidas.
+2.3.2. Eliminar datos inválidos.
+2.3.3. Quitar CELDA COMBINADAS.
+2.4. Formato:
+2.4.1. Aplicar borde a la tabla, y revisar que NO QUEDEN CELDAS COMBINADAS.
+2.5. Remover paradas repetidas: Al eliminar columnas, puede quedar algo como CIP-NQN-NQN-CIP. Dejar solamente el horario de SALIDA en cada caso.
