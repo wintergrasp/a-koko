@@ -1,4 +1,7 @@
-1. Crear 2 copias del XLS de horarios: 1º para no perder el original, 2º para modificar y estandarizar.
+1. Crear 2 copias del XLS de horarios:
+1.1. 1º Para no perder el original.
+1.2. 2º Para modificar y estandarizar.
+
 2. Por cada hoja:
 2.1. Horas eliminadas (texto blanco): Establecer fondo AMARILLO a las celdas que contienen horarios.
 2.2. Eliminar formulas: Copiar tabla de horarios y PEGAR VALORES nuevamente en la misma selección.

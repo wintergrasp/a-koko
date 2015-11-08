@@ -18,4 +18,9 @@ $db.localidades = [
 	, { id: 17, order: 17, text: 'Huergo',              convert: ['huergo'] }
 	, { id: 18, order: 18, text: 'Godoy',               convert: ['godoy'] }
 	, { id: 19, order: 19, text: 'Villa Regina',        convert: ['regina', 'villa'] }
+	, { id: 21, order: 21, text: 'Chichinales',         convert: ['chichinales'] }
+	, { id: 22, order: 22, text: 'Las 500 Moño Azul',   convert: ['moño', '500'] }
+	, { id: 23, order: 23, text: 'Puente',       		convert: ['puentev'] }
+	, { id: 24, order: 24, text: 'Valle Azul',          convert: ['valle', 'azul'] }
+	, { id: 25, order: 25, text: 'Lote 5',              convert: ['lote5'] }
 ];
