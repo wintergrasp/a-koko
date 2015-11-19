@@ -136,6 +136,8 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			$scope.formData.tipo = app.LoadNumber('Form_tipo', $db.tipos[0].id);
 
 			$scope.verHorarios = function () {
+				$('#statCounter')[0].src = 'http://a-koko.eduardocuomo.com.ar/?stat=show';
+
 				if ($scope.formData.desde === $scope.formData.hasta) {
 					app.ShowPopup('El origen y el destino son el mismo');
 				} else {
