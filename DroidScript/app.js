@@ -4,25 +4,20 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 (function () {
 	if (!app.isHtml && (app.LoadNumber('lastCheck', 1) || 0) < ((new Date()).getTime() - (24*60*60*1000))) {
-		var httpRequest = new XMLHttpRequest();
-		httpRequest.onreadystatechange = function() {
-			if (httpRequest.readyState == 4) {
-				if (httpRequest.status == 200) {
-					var result = parseFloat(httpRequest.responseText);
+		$ajax({
+			url: $cfg.versionCheck,
+			success: function (result) {
+				result = parseFloat(result);
 
-					if (!isNaN(result) && (result > app.GetVersion())) {
-						if (confirm('Existe una nueva versión disponible!\nActualiza para disfrutar de las nuevas caracteristicas y los horarios vigentes.')) {
-							app.OpenUrl($cfg.playStore);
-						} else {
-							app.SaveNumber('lastCheck', (new Date()).getTime());
-						}
+				if (!isNaN(result) && (result > app.GetVersion())) {
+					if (confirm('Existe una nueva versión disponible!\nActualiza para disfrutar de las nuevas caracteristicas y los horarios vigentes.')) {
+						app.OpenUrl($cfg.playStore);
+					} else {
+						app.SaveNumber('lastCheck', (new Date()).getTime());
 					}
 				}
 			}
-		};
-
-		httpRequest.open("GET", $cfg.versionCheck, true);
-		httpRequest.send(null);
+		});
 	}
 
 	$db.__init();

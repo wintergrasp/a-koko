@@ -128,6 +128,30 @@ function $each(o, fn) {
 	return true; // All finish
 }
 
+function $ajax(o) {
+	var httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange = function() {
+		if (httpRequest.readyState == 4) {
+			var result = httpRequest.responseText;
+			if (httpRequest.status == 200) {
+				if (o.success && (typeof o.success === 'function')) {
+					o.success.apply(this, [result]);
+				}
+			} else {
+				if (o.error && (typeof o.error === 'function')) {
+					o.error.apply(this, [httpRequest.status, result]);
+				}
+			}
+			if (o.complete && (typeof o.complete === 'function')) {
+				o.complete.apply(this, [httpRequest.status, result]);
+			}
+		}
+	};
+
+	httpRequest.open("GET", o.url, true);
+	httpRequest.send(null);
+}
+
 var horariosUtils = {
 
 	/*return [
