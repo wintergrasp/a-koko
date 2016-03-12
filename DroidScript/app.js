@@ -3,7 +3,7 @@ function Menu() { $('#main-menu').click(); }
 Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 (function () {
-	if (!app.isHtml && (app.LoadNumber('lastCheck', 1) || 0) < ((new Date()).getTime() - (24*60*60*1000))) {
+	/*if (!app.isHtml && (app.LoadNumber('lastCheck', 1) || 0) < ((new Date()).getTime() - (24*60*60*1000))) {
 		var httpRequest = new XMLHttpRequest();
 		httpRequest.onreadystatechange = function() {
 			if (httpRequest.readyState == 4) {
@@ -23,7 +23,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 
 		httpRequest.open("GET", $cfg.versionCheck, true);
 		httpRequest.send(null);
-	}
+	}*/
 
 	$db.__init();
 
@@ -120,7 +120,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				}
 			};
 
-			$rootScope.$on("$routeChangeSuccess", function (event, current, previous) { 
+			$rootScope.$on("$routeChangeSuccess", function (event, current, previous) {
 				$scope.hideNav();
 			});
 		}])
@@ -136,8 +136,6 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			$scope.formData.tipo = app.LoadNumber('Form_tipo', $db.tipos[0].id);
 
 			$scope.verHorarios = function () {
-				$('#statCounter')[0].src = 'http://a-koko.eduardocuomo.com.ar/?stat=show';
-
 				if ($scope.formData.desde === $scope.formData.hasta) {
 					app.ShowPopup('El origen y el destino son el mismo');
 				} else {
