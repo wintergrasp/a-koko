@@ -1,6 +1,18 @@
 A-KoKo - Android KoKo
 =====================
 
+# Production
+
+## PlayStore
+
+* https://play.google.com/store/apps/details?id=ar.com.eduardocuomo.akoko
+
+## Web
+
+* http://a-koko.eduardocuomo.tk
+* http://a-koko.tk
+* http://akoko.tk
+
 # Developers
 
 ## Tools
