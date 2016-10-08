@@ -234,6 +234,10 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 				app.OpenUrl($cfg.webApp);
 			};
 
+			$scope.contrib = function () {
+				app.OpenUrl($cfg.repo);
+			};
+
 			$scope.doShare = function () {
 				app.OpenUrl($cfg.playStore);
 			};
