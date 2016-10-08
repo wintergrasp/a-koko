@@ -32579,7 +32579,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32605,7 +32605,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32635,7 +32635,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32661,7 +32661,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32691,7 +32691,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32721,7 +32721,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32751,7 +32751,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -32777,7 +32777,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -32803,7 +32803,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -32833,7 +32833,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -32859,7 +32859,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -32889,7 +32889,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -32919,7 +32919,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -32949,7 +32949,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 1,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -32975,7 +32975,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33005,7 +33005,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33031,7 +33031,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33061,7 +33061,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33091,7 +33091,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33121,7 +33121,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33147,7 +33147,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33177,7 +33177,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -33203,7 +33203,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33233,7 +33233,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33263,7 +33263,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33293,7 +33293,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 2,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -33319,7 +33319,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33349,7 +33349,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33375,7 +33375,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33405,7 +33405,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 19,
@@ -33435,7 +33435,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33465,7 +33465,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 24,
@@ -33491,7 +33491,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
@@ -33521,7 +33521,7 @@ $db.horarios = [
 	},
 	{
 		"dia": 3,
-		"tipo": 6,
+		"tipo": 2,
 		"recorrido": [
 			{
 				"localidad": 25,
