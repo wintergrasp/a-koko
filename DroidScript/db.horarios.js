@@ -28393,6 +28393,7 @@ $db.horarios = [
 			}
 		]
 	},
+	/* https://gitlab.com/reduardo7/a-koko/issues/9
 	{
 		"dia": 2,
 		"tipo": 3,
@@ -28427,6 +28428,7 @@ $db.horarios = [
 			}
 		]
 	},
+	*/
 	{
 		"dia": 2,
 		"tipo": 3,
