@@ -4,6 +4,7 @@ $db.tipos = [
 	, { id: 3, text: 'Expreso', file: 'expreso' }
 	, { id: 4, text: 'Directo', file: 'directo' }
 	, { id: 5, text: 'Isla 10', file: 'isla10' }
+	, { id: 6, text: 'Rural', file: 'rural' }
 	, { id: 100, text: 'Primero que Pasa', file: null }
 ];
 

@@ -39,15 +39,22 @@ function strToObject(s) {
 			
 				if (f) { // First Row
 					td = td.toLowerCase();
+					var notFound = true;
 					$db.localidades.each(function () {
 						var localidad = this;
 						localidad.convert.each(function (icloc, tcloc) {
 							if (td.contains(tcloc)) {
 								heads[itd] = localidad.id;
+								notFound = false;
 								return false;
 							}
 						});
 					});
+					if (notFound) {
+						var m = 'Invalid {localidad}: [' + td + ']';
+						alert(m);
+						throw m;
+					}
 				} else if (td) { // Not empty cell
 					// Body
 					if (/^\d+[^\d]\d+$/.test(td)) {
