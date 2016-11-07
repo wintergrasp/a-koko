@@ -21,16 +21,16 @@ $db.localidades = [
 	, { id: 20, order: 20, text: 'Barrio Matadero',		convert: ['matadero']},
 	, { id: 35, order: 21, text: 'Barrio Nuevo',		convert: ['nuevo']},
 	, { id: 21, order: 22, text: 'Alberdi',				convert: ['alberdi']},
-	, { id: 22, order: 24, text: '4 Esquinas',			convert: ['esquinas']},
-	, { id: 33, order: 25, text: 'C. Este',				convert: ['este']},
-	, { id: 34, order: 26, text: 'C. Oeste',			convert: ['oeste']},
-	, { id: 24, order: 27, text: 'Puente Fierro',  		convert: ['puente', 'fierro'] }
-	, { id: 25, order: 28, text: 'Amparo',				convert: ['amparo']},
-	, { id: 26, order: 29, text: 'Benega',				convert: ['benega']},
-	, { id: 27, order: 30, text: 'Las 500 Moño Azul',	convert: ['moño', '500'] }
-	, { id: 28, order: 31, text: 'Barrio Ceferino', 	convert: ['ceferino'] }
-	, { id: 29, order: 32, text: 'Chichinales',			convert: ['chichinales', 'nales'] }
-	, { id: 30, order: 33, text: 'Alta Barda',			convert: ['barda'] }
-	, { id: 31, order: 34, text: 'Valle Azul',          convert: ['valle', 'azul'] }
-	, { id: 32, order: 35, text: 'Lote 5',              convert: ['lote5', 'lote'] }
+	, { id: 22, order: 23, text: '4 Esquinas',			convert: ['esquinas']},
+	, { id: 33, order: 24, text: 'C. Este',				convert: ['este']},
+	, { id: 34, order: 25, text: 'C. Oeste',			convert: ['oeste']},
+	, { id: 24, order: 26, text: 'Puente Fierro',  		convert: ['puente', 'fierro'] }
+	, { id: 25, order: 27, text: 'Amparo',				convert: ['amparo']},
+	, { id: 26, order: 28, text: 'Benega',				convert: ['benega']},
+	, { id: 27, order: 29, text: 'Las 500 Moño Azul',	convert: ['moño', '500'] }
+	, { id: 28, order: 30, text: 'Barrio Ceferino', 	convert: ['ceferino'] }
+	, { id: 29, order: 31, text: 'Chichinales',			convert: ['chichinales', 'nales'] }
+	, { id: 30, order: 32, text: 'Alta Barda',			convert: ['barda'] }
+	, { id: 31, order: 33, text: 'Valle Azul',          convert: ['valle', 'azul'] }
+	, { id: 32, order: 34, text: 'Lote 5',              convert: ['lote5', 'lote'] }
 ];
