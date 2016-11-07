@@ -157,7 +157,7 @@ var horariosUtils = {
 				i = 0;
 
 				$each(horario.recorrido, function (x, recorridos) {
-					//$each(recorridos, function (x, recorrido) {
+					$each(recorridos, function (x, recorrido) {
 						if (desde === recorrido.localidad) {
 							fl = desde;
 							fh = recorrido.hora;
@@ -172,10 +172,10 @@ var horariosUtils = {
 
 						if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
 							rr = [];
-							$each(horario.recorrido, function (rri, rrv) {
+							$each(recorridos, function (x, recorridoCopy) {
 								rr.push({
-									localidad: $db.localidades.get(rrv.localidad).text,
-									hora: rrv.hora,
+									localidad: $db.localidades.get(recorridoCopy.localidad).text,
+									hora: recorridoCopy.hora,
 									tipo: $db.tipos.get(horario.tipo).text
 								});
 							});
@@ -196,7 +196,7 @@ var horariosUtils = {
 						}
 
 						i++;
-					//});
+					});
 				});
 			}
 		});
