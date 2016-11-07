@@ -132,6 +132,8 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 			$scope.formData = {};
 			__selected = { isSelected: false };
 
+			$scope.withId = function (item) { return item.id; };
+
 			$scope.formData.desde = app.LoadNumber('Form_desde');
 			$scope.formData.hasta = app.LoadNumber('Form_hasta');
 			$scope.formData.dia = app.LoadNumber('Form_dia', $db.dias[0].id);
