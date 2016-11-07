@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  app:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - "./DroidScript:/usr/share/nginx/html"
