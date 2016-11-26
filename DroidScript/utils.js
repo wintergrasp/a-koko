@@ -148,7 +148,21 @@ var horariosUtils = {
 			localidadHasta = $db.localidades.get(hasta),
 			fl, tl, fi, ti, fh, th, i, rr, hh;
 
-		$each($db.horarios, function (x, horario) {
+		/* TRANSFORM NEW DB FORMAT */
+		var oldDbHorarios = [];
+
+		$each($db.horarios, function (x, horarios) {
+			$each(horarios.recorridos, function (x, recorrido) {
+				oldDbHorarios.push({
+					dia: horarios.dia,
+					tipo: horarios.tipo,
+					recorrido: recorrido
+				});
+			});
+		});
+		/* /TRANSFORM NEW DB FORMAT */
+
+		$each(oldDbHorarios, function (x, horario) {
 			if ((horario.dia === dia) && (pqp || (horario.tipo === tipo))) {
 				fl = -1;
 				tl = -1;
@@ -156,47 +170,45 @@ var horariosUtils = {
 				ti = -1;
 				i = 0;
 
-				$each(horario.recorrido, function (x, recorridos) {
-					$each(recorridos, function (x, recorrido) {
-						if (desde === recorrido.localidad) {
-							fl = desde;
-							fh = recorrido.hora;
-							fi = i;
-						}
+				$each(horario.recorrido, function (x, recorrido) {
+					if (desde === recorrido.localidad) {
+						fl = desde;
+						fh = recorrido.hora;
+						fi = i;
+					}
 
-						if (hasta === recorrido.localidad) {
-							tl = hasta;
-							hh = th = recorrido.hora;
-							ti = i;
-						}
+					if (hasta === recorrido.localidad) {
+						tl = hasta;
+						hh = th = recorrido.hora;
+						ti = i;
+					}
 
-						if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
-							rr = [];
-							$each(recorridos, function (x, recorridoCopy) {
-								rr.push({
-									localidad: $db.localidades.get(recorridoCopy.localidad).text,
-									hora: recorridoCopy.hora,
-									tipo: $db.tipos.get(horario.tipo).text
-								});
+					if ((fi < ti) && (fl > -1) && (tl > -1)) { // From && To
+						rr = [];
+						$each(horario.recorrido, function (rri, rrv) {
+							rr.push({
+								localidad: $db.localidades.get(rrv.localidad).text,
+								hora: rrv.hora,
+								tipo: $db.tipos.get(horario.tipo).text
 							});
+						});
 
-							data.push({
-								hora: fh,
-								localidad: $db.localidades.get(fl),
-								active: false,
-								recorrido: rr,
-								destino: {
-									hora: hh,
-									localidad: localidadHasta
-								},
-								tipo: $db.tipos.get(horario.tipo)
-							});
+						data.push({
+							hora: fh,
+							localidad: $db.localidades.get(fl),
+							active: false,
+							recorrido: rr,
+							destino: {
+								hora: hh,
+								localidad: localidadHasta
+							},
+							tipo: $db.tipos.get(horario.tipo)
+						});
 
-							return false;
-						}
+						return false;
+					}
 
-						i++;
-					});
+					i++;
 				});
 			}
 		});

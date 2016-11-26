@@ -4,7 +4,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 4,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 13,
@@ -492,7 +492,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 4,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 13,
@@ -960,7 +960,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 4,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 13,
@@ -1136,7 +1136,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 3,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 3,
@@ -2862,7 +2862,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 3,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 3,
@@ -3970,7 +3970,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 3,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 3,
@@ -5088,7 +5088,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -8678,7 +8678,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -12268,7 +12268,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -15858,7 +15858,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 19,
@@ -16450,7 +16450,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 10,
@@ -18180,7 +18180,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 2,
@@ -19442,7 +19442,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 10,
@@ -20782,7 +20782,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 2,
@@ -21712,7 +21712,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 10,
@@ -22158,7 +22158,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 2,
@@ -22384,7 +22384,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 1,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -23666,7 +23666,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 1,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -24782,7 +24782,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 1,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -25898,7 +25898,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 5,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -26240,7 +26240,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 5,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -26582,7 +26582,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 5,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -26770,7 +26770,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 6,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -27018,7 +27018,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 6,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -27266,7 +27266,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 6,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 7,
@@ -27514,7 +27514,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 8,
@@ -28016,7 +28016,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 29,
@@ -28594,7 +28594,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 29,
@@ -29172,7 +29172,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 19,
@@ -29718,7 +29718,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 19,
@@ -30264,7 +30264,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 19,
@@ -30892,7 +30892,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 19,
@@ -31520,7 +31520,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 29,
@@ -31936,7 +31936,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 18,
@@ -32056,7 +32056,7 @@ $db.horarios = [
 {
  dia: 1,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 31,
@@ -32404,7 +32404,7 @@ $db.horarios = [
 {
  dia: 2,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 32,
@@ -32708,7 +32708,7 @@ $db.horarios = [
 {
  dia: 3,
  tipo: 2,
- recorrido: [
+ recorridos: [
   [
    {
     localidad: 32,
