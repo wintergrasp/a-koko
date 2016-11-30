@@ -5,7 +5,7 @@ if (this.app) {
 		  isHtml: true
 
 		, GetVersion: function () {
-			return '2.28';
+			return '2.54';
 		}
 
 		, SendMail: function (email, subject, message, file) {
