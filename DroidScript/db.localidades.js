@@ -32,5 +32,5 @@ $db.localidades = [
 	, { id: 29, order: 31, text: 'Chichinales',			convert: ['chichinales', 'nales'] }
 	, { id: 30, order: 32, text: 'Alta Barda',			convert: ['barda'] }
 	, { id: 31, order: 33, text: 'Valle Azul',          convert: ['valle', 'azul'] }
-	, { id: 32, order: 34, text: 'Lote 5',              convert: ['lote5', 'lote'] }
+	, { id: 32, order: 34, text: 'Lote 5',              convert: ['lote'] }
 ];

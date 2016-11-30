@@ -1,34 +1,47 @@
-const XLSX = require('xlsx');
+// https://github.com/SheetJS/js-xlsx
 
-const file = process.argv[0];
+const XLSX = require('xlsx');
+const $db = require('./load_db');
+const Utils = require('./utils');
+const ParserHelper = require('./parser_helper');
+
+var file = process.argv[2];
 
 if (!file) {
-  throw 'USAGE';
+  console.error('USAGE:');
+  console.error('$ ', process.argv[0], process.argv[1], 'file.xls');
+  process.exit(1);
 }
 
-console.log(`File: ${file}`);
-const workbook = XLSX.readFile(file);
+console.info('File:', file);
 
-// var first_sheet_name = workbook.SheetNames[0];
-// var address_of_cell = 'A1';
+try {
+  const workbook = XLSX.readFile(file);
+} catch (e) {
+  console.error('Error! Invalid input file', file);
+  throw e;
+}
 
-/* Get worksheet */
-// var worksheet = workbook.Sheets[first_sheet_name];
+const sheet_name_list = workbook.SheetNames;
 
-/* Find desired cell */
-// var desired_cell = worksheet[address_of_cell];
+sheet_name_list.forEach((sheet_name) => {
+  if (sheet_name) {
+    var worksheet = workbook.Sheets[sheet_name],
+        merges = worksheet['!merges'],
+        worksheet_tipo = ParserHelper.getTipoId(sheet_name);
 
-/* Get the value */
-// var desired_value = desired_cell.v;
+    for (cell_address_code in worksheet) {
+      // all keys that do not begin with "!" correspond to cell addresses
+      if (cell_address_code[0] === '!') continue;
 
+      var cell_address = XLSX.utils.decode_cell(cell_address_code),
+          cell_value = worksheet[cell_address_code].w,
+          cell_x = cell_address_code.replace(/\d+/g, ''),
+          cell_y = cell_address_code.replace(/[a-zA-Z]+/g, '');
 
-
-var sheet_name_list = workbook.SheetNames;
-sheet_name_list.forEach(function(y) { /* iterate through sheets */
-  var worksheet = workbook.Sheets[y];
-  for (z in worksheet) {
-    /* all keys that do not begin with "!" correspond to cell addresses */
-    if(z[0] === '!') continue;
-    console.log(y + "!" + z + "=" + JSON.stringify(worksheet[z].v));
+      //console.log(`${sheet_name}!${cell_address_code}:`, cell_value, cell_address);
+    }
   }
 });
+
+console.info('Finish');

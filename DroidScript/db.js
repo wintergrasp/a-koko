@@ -21,4 +21,4 @@ Object.defineProperty($db, '__init', {
 		}
 	},
 	enumerable: false
-})
+});
