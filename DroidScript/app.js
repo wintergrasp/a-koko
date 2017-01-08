@@ -25,7 +25,7 @@ Menu.isVisible = function () { return $('#sidenav-overlay').length > 0; };
 		httpRequest.send(null);
 	}*/
 
-	//app.Alert('Los horarios han cambiado, y esta APP no dispone por el momento de los nuevos Horarios.', 'Horarios Desactualizados');
+	app.Alert('Los horarios han cambiado y esta APP no dispone por el momento de los nuevos Horarios', 'Horarios Desactualizados');
 
 	$db.__init();
 
