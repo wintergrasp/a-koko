@@ -7,3 +7,12 @@ services:
       - "80:80"
     volumes:
       - "./DroidScript:/usr/share/nginx/html"
+
+  parser:
+    image: node:latest
+    working_dir: /app
+    environment:
+      file: "test.xlsx"
+    command: bash /app/run.sh
+    volumes:
+      - "./xls-parser:/app"

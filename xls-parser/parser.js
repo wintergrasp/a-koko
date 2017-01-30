@@ -1,9 +1,6 @@
 // https://github.com/SheetJS/js-xlsx
 
 const XLSX = require('xlsx');
-const $db = require('./load_db');
-const Utils = require('./utils');
-const ParserHelper = require('./parser_helper');
 
 var file = process.argv[2];
 
@@ -27,8 +24,7 @@ const sheet_name_list = workbook.SheetNames;
 sheet_name_list.forEach((sheet_name) => {
   if (sheet_name) {
     var worksheet = workbook.Sheets[sheet_name],
-        merges = worksheet['!merges'],
-        worksheet_tipo = ParserHelper.getTipoId(sheet_name);
+        merges = worksheet['!merges'];
 
     for (cell_address_code in worksheet) {
       // all keys that do not begin with "!" correspond to cell addresses
